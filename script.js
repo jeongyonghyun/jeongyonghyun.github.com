@@ -76,7 +76,7 @@ function startWebRTC(isOfferer) {
     }
   };
   
-  if(memeber.length===2){
+  if(memebers.length === 2){
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true,
