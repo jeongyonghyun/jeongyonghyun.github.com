@@ -75,7 +75,8 @@ function startWebRTC(isOfferer) {
       remoteVideo.srcObject = stream;
     }
   };
-
+  
+  if(member==2){  
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true,
@@ -85,7 +86,7 @@ function startWebRTC(isOfferer) {
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
-
+  };
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
