@@ -5,7 +5,7 @@ if (!location.hash) {
 const roomHash = location.hash.substring(1);
 
 // TODO: Replace with your own channel ID
-const drone = new ScaleDrone('yiS12Ts5RdNhebyM');
+const drone = new ScaleDrone('63wnzap0klxFE9at');
 // Room name needs to be prefixed with 'observable-'
 const roomName = 'observable-' + roomHash;
 const configuration = {
@@ -76,6 +76,7 @@ function startWebRTC(isOfferer) {
     }
   };
   
+  if(memeber.length===2){
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true,
@@ -85,7 +86,8 @@ function startWebRTC(isOfferer) {
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
-
+  };
+  
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
