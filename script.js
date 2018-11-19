@@ -76,7 +76,7 @@ function startWebRTC(isOfferer) {
     }
   };
 
-  if(offerer){
+  if(waiter){
     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
