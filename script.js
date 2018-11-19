@@ -39,6 +39,7 @@ drone.on('open', error => {
     // If we are the second user to connect to the room we will be creating the offer
     const isOfferer = members.length === 2;
     startWebRTC(isOfferer);
+    console.log("isOfferer : ",isOfferer);
   });
 });
 
@@ -91,6 +92,7 @@ function startWebRTC(isOfferer) {
   room.on('data', (message, client) => {
     // Message was sent by us
     if (client.id === drone.clientId) {
+      console.log("client.id : ",client.id);
       return;
     }
 
