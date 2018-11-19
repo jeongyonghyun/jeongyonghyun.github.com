@@ -76,7 +76,6 @@ function startWebRTC(isOfferer) {
     }
   };
 
-  if(waiter){
     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
@@ -86,9 +85,8 @@ function startWebRTC(isOfferer) {
       // Add your stream to be sent to the conneting peer
       stream.getTracks().forEach(track => pc.addTrack(track, stream));
     }, onError);
-  }else{
-    document.write("I am waiter")
-  }
+ 
+
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
