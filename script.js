@@ -71,11 +71,12 @@ function startWebRTC(isOfferer) {
 
   // When a remote stream arrives display it in the #remoteVideo element
  
-  if(isOfferer == false){
+  if(isOfferer === false){
     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
     }).then(stream => {
+      localVideo.srcObject = stream;
       // Add your stream to be sent to the conneting peer
       stream.getTracks().forEach(track => pc.addTrack(track, stream));
     }, onError);
