@@ -68,7 +68,7 @@ function startWebRTC(isOfferer) {
     }
   }
   
-  if(members.id==1){
+  if(member.id==[0]){
     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
