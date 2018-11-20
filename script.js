@@ -80,7 +80,11 @@ function startWebRTC(isOfferer) {
   
 　const constraints = {
      audio : true,
-     vidro : {width:1280, height:720}
+     video : {
+        facingMode : {exact :"environment"},
+        width : {min:1024, ideal:1280, max:1920},
+        height : {min:776, ideal:720, max:1080}
+     }
  };
     
   navigator.mediaDevices.getUserMedia(constraints).then(stream => {
