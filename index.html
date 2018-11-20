@@ -23,24 +23,27 @@
         }
      #localVideo {
           position : fixed;
-          transform: translateX(1060px);
+          transform: translateX(1280px);
           margin: 5px 5px;
           padding: 0;
           border-radius: 2px;
           border : 1px solid;
         }
+      #container{
+          position : fixed;
+          transform: translateY(650px);
+          left :5px
+      }
     #url {
       position : fixed;
-      width : 400px;
-      transform: translateY(580px);
+      width : 300px;
       border-bottom: 1px solid;
       top: 5px;
-      left : 5px;
       font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
-    }
+     }
       input{
-          transform: translate(400px,580px);
+          transform: translate(450px,660px);
       }
       #qrcode {
           position : fixed;
@@ -48,7 +51,7 @@
           height:200px;
           margin-top:15px;
           float = right ;
-          transform: translate(1060px,400px);
+          transform: translate(1300px,400px);
           background-color: aqua;
             }   
   </style>
@@ -68,11 +71,9 @@
     
     <video width = 80% height = 85% id="remoteVideo" autoplay></video>
     <video width = 15% height = 15% id="localVideo" autoplay muted></video>
-      
-    <p id = "url"><mark style = "background-color : pink"> Access Point : </mark> </p>
-    <input type="file" accept="image/*;capture=camera">
-    <input type="file" accept="video/*;capture=camcorder">
-    <input type="file" accept="audio/*;capture=microphone">
+    <div id = "container">
+        <mark style = "background-color: pink"> Access Point :</mark>  <p id = "url"></p>
+    </div>
     <div id = "qrcode"> </div>
     <script src="script.js"></script>
 </body>
