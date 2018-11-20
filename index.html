@@ -31,7 +31,7 @@
         }
     #url {
       position : fixed;
-      width : 500px;
+      width : 400px;
       transform: translateY(580px);
       border-bottom: 1px solid;
       top: 5px;
@@ -39,6 +39,9 @@
       font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
     }
+      input{
+          transform: translate(400px,580px);
+      }
       #qrcode {
           position : fixed;
           width:200px;
@@ -50,14 +53,14 @@
             }   
   </style>
   <script type="text/javascript">
-        $(document).ready(function() {
-        $('#qrcode').qrcode({
-        'url' : 'https://www.google.com', // users will be redirected to this URL when scanning the QR-Code
-        'width' : 300, // image width in pixel
-        'height' : 300, // image height in pixel
-        'qrsize' : 100 // quality of the QR-Code in pixel
-        });
-        });
+    $(document).ready(function() {
+    $('#qrcode').qrcode({
+    'url' : 'https://www.google.com', // users will be redirected to this URL when scanning the QR-Code
+    'width' : 300, // image width in pixel
+    'height' : 300, // image height in pixel
+    'qrsize' : 100 // quality of the QR-Code in pixel
+    });
+    });
   </script>
 
 </head>
@@ -67,6 +70,9 @@
     <video width = 15% height = 15% id="localVideo" autoplay muted></video>
       
     <p id = "url"><mark style = "background-color : pink"> Access Point : </mark> </p>
+    <input type="file" accept="image/*;capture=camera">
+    <input type="file" accept="video/*;capture=camcorder">
+    <input type="file" accept="audio/*;capture=microphone">
     <div id = "qrcode"> </div>
     <script src="script.js"></script>
 </body>
