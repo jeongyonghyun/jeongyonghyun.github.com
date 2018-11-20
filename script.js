@@ -74,18 +74,10 @@ function startWebRTC(isOfferer) {
     const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
- 
-    navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: true,
-    }).then(stream => {
-      localVideo.srcObject = stream;
-      // Add your stream to be sent to the conneting peer
-      stream.getTracks().forEach(track => pc.addTrack(track, stream));
-    }, onError);
-  }
+    }
+  };
     
-   /* 
+
     navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
@@ -94,7 +86,7 @@ function startWebRTC(isOfferer) {
       localVideo.srcObject = stream;
       // Add your stream to be sent to the conneting peer
       stream.getTracks().forEach(track => pc.addTrack(track, stream));
-    }, onError);*/
+    }, onError);
  
 
   // Listen to signaling data from Scaledrone
