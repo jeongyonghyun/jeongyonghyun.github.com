@@ -5,35 +5,39 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <style>
-    body {
-      display: flex;
-      height: 100vh;
+    html,body {
       margin: 0;
-      align-items: center;
-      justify-content: center;
-      padding: 0 50px;
+      padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    video {
-      max-width: calc(50% - 100px);
-      margin: 0 50px;
-      box-sizing: border-box;
-      border-radius: 2px;
-      padding: 0;
-      box-shadow: rgba(156, 172, 172, 0.2) 0px 2px 2px, rgba(156, 172, 172, 0.2) 0px 4px 4px, rgba(156, 172, 172, 0.2) 0px 8px 8px, rgba(156, 172, 172, 0.2) 0px 16px 16px, rgba(156, 172, 172, 0.2) 0px 32px 32px, rgba(156, 172, 172, 0.2) 0px 64px 64px;
-    }
+      
+    #remoteVideo {
+          width = 1000px;
+          height = 600px;
+          margin: 5px 10px;
+          padding: 0;
+          border-radius: 3px;
+          border : 1px solid;
+        }
+     #localVideo {
+          position : fixed;
+          width = 100px;
+          height = 60px;
+          margin: 5px 10px;
+          padding: 0;
+          border-radius: 3px;
+          border : 1px solid;
+        }
     #url {
-      position: fixed;
       top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 16px;
+      font-size: 20px;
       color: rgba(0, 0, 0, 0.5);
     }
       #qrcode {
           width:160px;
           height:160px;
           margin-top:15px;
+          float = right ;
             }   
   </style>
     <script type="text/javascript">
@@ -52,10 +56,12 @@
     </script>
 </head>
 <body>
+    
+    <video id="remoteVideo" autoplay></video>
+    <video id="localVideo" autoplay muted></video>
+      
     <div id = "url"> Access Point : </div>
     <div id = "qrcode"> </div>
-    <video id="localVideo" autoplay muted></video>
-    <video id="remoteVideo" autoplay></video>
     <script src="script.js"></script>
 </body>
 </html>
