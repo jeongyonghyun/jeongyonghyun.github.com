@@ -4,7 +4,7 @@ if (!location.hash) {
 }
 const roomHash = location.hash.substring(1);
 const target = document.getElementById("url");
-target.innerHTML = "http://jeongyonghyun.github.io/" + roomHash;
+const roomNo = target.innerHTML = "https://jeongyonghyun.github.io/#" + roomHash;
 
 // TODO: Replace with your own channel ID
 const drone = new ScaleDrone('63wnzap0klxFE9at');
