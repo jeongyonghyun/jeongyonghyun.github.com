@@ -78,12 +78,12 @@ function startWebRTC(isOfferer) {
     }
   };
   
-　const prop = {
+　const constraints = {
      audio : true,
-     vidro : {width:1080px, height:640px}
+     vidro : {width:1280, height:720}
  };
     
-  navigator.mediaDevices.getUserMedia(prop).then(stream => {
+  navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     // Add your stream to be sent to the conneting peer
