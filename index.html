@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.qrcode.js"></script>
+    
   <style>
     html,body {
       margin: 0;
@@ -29,7 +32,7 @@
     #url {
       position : fixed;
       width : 500px;
-      transform: translateY(560px);
+      transform: translateY(580px);
       border-bottom: 1px solid;
       top: 5px;
       left : 5px;
@@ -46,19 +49,17 @@
           background-color: aqua;
             }   
   </style>
-    <script type="text/javascript">
-        var qrcode = new QRCode("test", {
-        text: roomNo,
-        width: 128,
-        height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
+  <script type="text/javascript">
+        $(document).ready(function() {
+        $('#qrcode').qrcode({
+        'url' : 'https://www.google.com', // users will be redirected to this URL when scanning the QR-Code
+        'width' : 300, // image width in pixel
+        'height' : 300, // image height in pixel
+        'qrsize' : 100 // quality of the QR-Code in pixel
         });
-        
-        document.getElementById("qrcode")
-        
-    </script>
+        });
+  </script>
+
 </head>
 <body>
     
