@@ -86,17 +86,13 @@ function startWebRTC(isOfferer) {
      video : {
         {facingMode :(front?"user":"environment")},
         width : {min:1024, ideal:1280, max:1920},
-        height : {min:776, ideal:720, max:1080}
+        height : {min:776, ideal:720, max:1080},
      }
  };*/
     
   navigator.mediaDevices.getUserMedia({ 
      audio : true,
-     video : {
-        {facingMode :(front?"user":"environment")},
-        width : {min:1024, ideal:1280, max:1920},
-        height : {min:776, ideal:720, max:1080},
-        }
+     video : true,
      }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
