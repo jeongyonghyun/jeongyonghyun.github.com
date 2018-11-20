@@ -12,36 +12,41 @@
     }
       
     #remoteVideo {
-          width = 1000px;
-          height = 600px;
-          margin: 5px 10px;
+          position : fixed;
+          margin: 5px 5px;
           padding: 0;
           border-radius: 3px;
           border : 1px solid;
         }
      #localVideo {
           position : fixed;
-          width = 100px;
-          height = 60px;
-          margin: 5px 10px;
+          transform: translateX(1060px);
+          margin: 5px 5px;
           padding: 0;
-          border-radius: 3px;
+          border-radius: 2px;
           border : 1px solid;
         }
     #url {
-      top: 10px;
-      font-size: 20px;
+      position : fixed;
+      width : 500px;
+      transform: translateY(560px);
+      border-bottom: 1px solid;
+      top: 5px;
+      left : 5px;
+      font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
     }
       #qrcode {
-          width:160px;
-          height:160px;
+          position : fixed;
+          width:200px;
+          height:200px;
           margin-top:15px;
           float = right ;
+          transform: translate(1060px,400px);
+          background-color: aqua;
             }   
   </style>
     <script type="text/javascript">
-       
         var qrcode = new QRCode("test", {
         text: roomNo,
         width: 128,
@@ -57,10 +62,10 @@
 </head>
 <body>
     
-    <video id="remoteVideo" autoplay></video>
-    <video id="localVideo" autoplay muted></video>
+    <video width = 80% height = 85% id="remoteVideo" autoplay></video>
+    <video width = 15% height = 15% id="localVideo" autoplay muted></video>
       
-    <div id = "url"> Access Point : </div>
+    <p id = "url"><mark style = "background-color : pink"> Access Point : </mark> </p>
     <div id = "qrcode"> </div>
     <script src="script.js"></script>
 </body>
