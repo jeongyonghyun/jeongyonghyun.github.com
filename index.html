@@ -30,12 +30,33 @@
       font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
     }
+      #qrcode {
+          width:160px;
+          height:160px;
+          margin-top:15px;
+            }   
   </style>
+    <script type="text/javascript">
+        s
+        var qrcode = new QRCode("test", {
+        text: "http://javascript-html5-tutorial.com/",
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+        });
+        
+        document.getElementById("qrcode")
+    </script>
 </head>
 <body>
-  <div class="copy">Send your URL to a friend to start a video call</div>
-  <video id="localVideo" autoplay muted></video>
-  <video id="remoteVideo" autoplay></video>
-  <script src="script.js"></script>
+    <div class="copy">This is the URL below </div>
+    <video id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+    
+    <p id = "url"></p>
+    <div id='qrcode'> </div>
+    <script src="script.js"></script>
 </body>
 </html>
