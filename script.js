@@ -39,7 +39,6 @@ drone.on('open', error => {
     // If we are the second user to connect to the room we will be creating the offer
     const isOfferer = members.length === 2;
     startWebRTC(isOfferer);
-    console.log("isOfferer : ",isOfferer);
   });
 });
 
@@ -76,24 +75,21 @@ function startWebRTC(isOfferer) {
       remoteVideo.srcObject = stream;
     }
   };
-    
 
-    navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: true,
-    }).then(stream => {
-      // Display your local video in #localVideo element
-      localVideo.srcObject = stream;
-      // Add your stream to be sent to the conneting peer
-      stream.getTracks().forEach(track => pc.addTrack(track, stream));
-    }, onError);
- 
+  navigator.mediaDevices.getUserMedia({
+    audio: true,
+    video: true,
+  }).then(stream => {
+    // Display your local video in #localVideo element
+    localVideo.srcObject = stream;
+    // Add your stream to be sent to the conneting peer
+    stream.getTracks().forEach(track => pc.addTrack(track, stream));
+  }, onError);
 
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
     if (client.id === drone.clientId) {
-      console.log("client.id : ",client.id);
       return;
     }
 
