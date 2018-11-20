@@ -78,10 +78,12 @@ function startWebRTC(isOfferer) {
     }
   };
   
+    const front = false;
+    document.getElementById('flip-button').onclick = function()(front=!front);
 　const constraints = {
      audio : true,
      video : {
-        facingMode : {exact :"environment"},
+         {facingMode :(front?"user":"environment")},
         width : {min:1024, ideal:1280, max:1920},
         height : {min:776, ideal:720, max:1080}
      }
