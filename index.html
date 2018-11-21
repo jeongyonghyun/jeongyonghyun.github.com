@@ -2,11 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name = "viewport" id = "viewport" content = "width=device-width, height=device-height,initial-scale=1">
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <!--<script src="https://code.jquery.com/jquery.min.js"></script>
-  <script type="text/javascript" src="jqeury.qrcode.js"></script>-->
+  <script src="https://code.jquery.com/jquery.min.js"></script>
+  <script type="text/javascript" src="jqeury.qrcode.js"></script>
  
   <style>
     html,body {
@@ -17,56 +18,71 @@
       video{
           object-fit: fill;
       }
-    #container1{
-          position : relative;
-          max-width : 80%;
-          height : auto;
+      
+      #container1{
+        position : relative;
+        width : 68%;
+      }
+      #container1 : before{
+          content : "";
+          display : block;
+          padding-top : 56.25%;
       }
     #remoteVideo { 
-          position : absolute;
-          max-width : 100%;
-          height : auto;
-          margin: 5px 5px;
-          padding: 0;
-          border-radius: 3px;
-          border : 1px solid;
+        top : 0;
+        left : 5px;
+        width : 100%;
+        height : 100%;
+        border-radius : 3px;
+        border : 1px solid;
         }
-    #container2{
-          position : relative;
-          max-width : 10%;
-          height : auto;
+      
+     #containerMap{
+          position:relative;
+          width : 10%;
+         z-index :10;
+          }
+      #containerMap : before{
+          content : "";
+          display : block;
+          padding-top : 56.25%;
       }
-    #localVideo {
+      #map{
           position : absolute;
-          max-width : 100%;
-          height : auto;
-         transform: translateX(200%);
-          margin: 5px 5px;
-          padding: 0;
-          border-radius: 2px;
-          border : 1px solid;
+         float : right;
+            }
+      
+    #container2{
+        position : relative;
+        width : 10%; 
+        left:5px;
+      }
+      #container2 : before{
+          content : "";
+          display : block;
+          padding-top : 56.25%;
+      }
+      #localVideo {
+        width : 100%;
+        height : 100%;
+        margin-top : 10px;
+        border-radius : 3px;
+        border : 1px solid;
         }
       
     #container3{
           position : relative;
-          transform: translateY(650px);
           left :5px
       }
     #url {
       position : absolute;
-      width : 300px;
+      width : 20%;
       border-bottom: 1px solid;
       top: 5px;
       font-size: 16px;
       color: rgba(0, 0, 0, 0.5);
      }
-      #container4{
-          position : relative;
-          transform: translate(500px,650px);
-      }
-      input{
-          transform: translate(450px,660px);
-      }
+      
       /*
       #QR{
           position : fixed;
@@ -85,13 +101,42 @@
           text : "&(url)" 
       });
   </script>-->
-  
+   <script>
+        function onLoad(){
+            initMap();
+        };
+        
+        var map;
+        var centerLocation = {lat: 35.480523, lng : 139.645188};
+        
+        function initMap(){
+            map = new google.maps.Map(document.getElementById('map'),{
+                center : centerLocation,
+                zoom : 17
+            });
+            
+            var marker = new google.maps.Marker({
+                position : centerLocation,
+                //icon : 'mylocation.png',
+                animation : google.maps.Animation.BOUNCE
+            });
+            
+            marker.setMap(map);
+        };
+    </script>
 </head>
+    
+ <body onload = "onLoad()">   
+    <div id = "map">
+    </div>   
+</body>
+    
 <body>
     <div id = "container1">
         <video id="remoteVideo" autoplay></video>
     </div>
     
+        
     <div id = "container2">
         <video id="localVideo" autoplay muted></video>
     </div>
@@ -99,11 +144,10 @@
     <div id = "container3">
         <mark style = "background-color: pink"> Access Point :</mark>  <p id = "url"></p>
     </div>
-    <div id="container4" >
-    <button id ="flip-button" type = "button" style = "font-size:20px"> Flip Camera  </button>
-    </div>
+    
     <div id = "QR"> </div> 
-    <p id = "location"></p>
+    <div id = "location"></div>
     <script src="script.js"></script>
 </body>
+         
 </html>

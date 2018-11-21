@@ -100,14 +100,11 @@ function startWebRTC(isOfferer) {
   const front = false;
   document.getElementById('flip-button').onclick = function()(front=!front);
   */
-　const constraints = {
-     audio : true,
-     video : {
-        facingMode : 'user'
-     }
- }
     
-  navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+  navigator.mediaDevices.getUserMedia( {
+     audio : true,
+     video : true
+ }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     // Add your stream to be sent to the conneting peer
