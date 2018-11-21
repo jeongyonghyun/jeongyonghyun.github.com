@@ -3,8 +3,6 @@ if (!location.hash) {
   location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 const roomHash = location.hash.substring(1);
-const target = document.getElementById("url");
-const roomNo = target.innerHTML = "https://jeongyonghyun.github.io/#" + roomHash;
 
 // TODO: Replace with your own channel ID
 const drone = new ScaleDrone('63wnzap0klxFE9at');
@@ -77,35 +75,17 @@ function startWebRTC(isOfferer) {
       remoteVideo.srcObject = stream;
     }
   };
- 
-  navigator.mediaDevices.getUserMedia( {
-     audio : true,
-     video : true
- }).then(stream => {
+
+  navigator.mediaDevices.getUserMedia({
+    audio: true,
+    video: true,
+  }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
-    // getting location of smartphone
- const x = document.getElementById("location");
-    
-    function getLocation(){
-        if(navigator.geolocation){
-            console.log("you can use geolocation");
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }else{
-            console.log("you cannot use geolocation");
-            x.innerHTML = "Geolocation is not available";
-        }
-    }
-    
-    function showPosition(position){
-        x.innerHTML = "Latitude : " +position.coords.latitude +
-        "<br>Logitude : " + position.coords.longitude; 
-    }
-    
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
