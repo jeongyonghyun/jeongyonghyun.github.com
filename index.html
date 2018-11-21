@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery.min.js"></script>
- <!-- <script type="text/javascript" src="jqeury.qrcode.js"></script>
-  <script type="text/javascript" src="qrcode.js"></script>-->
+  <script type="text/javascript" src="jqeury.qrcode.js"></script>
  
   <style>
     html,body {
@@ -14,9 +14,13 @@
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
+      video{
+          object-fit: fill;
+      }
     #container1{
           position : relative;
-          width : 80%;
+          max-width : 80%;
+          height : auto;
       }
     #remoteVideo { 
           position : absolute;
@@ -27,11 +31,12 @@
           border-radius: 3px;
           border : 1px solid;
         }
-    #container1{
+    #container2{
           position : relative;
-          width : 15%;
+          max-width : 10%;
+          height : auto;
       }
-     #localVideo {
+    #localVideo {
           position : absolute;
           max-width : 100%;
           height : auto;
@@ -42,7 +47,7 @@
           border : 1px solid;
         }
       
-      #container3{
+    #container3{
           position : relative;
           transform: translateY(650px);
           left :5px
@@ -62,24 +67,25 @@
       input{
           transform: translate(450px,660px);
       }
-      /*#QR{
+      /*
+      #QR{
           position : fixed;
           width:200px;
           height:200px;
           margin-top:15px;
           float = right ;
           transform: translate(1300px,400px);
-       }   */
+       } */
   </style>
-  <!--<script>
-      jQuery("#QR").qrcode({
-          render : "table",
+    <!--
+  <script>
+      jquery('#QR').qrcode({
           width : 150,
           height : 150,
-          text : "https://jeongyonghyun.github.io/" 
+          text : "&(url)" 
       });
   </script>-->
-
+  
 </head>
 <body>
     <div id = "container1">
@@ -97,6 +103,7 @@
     <button id ="flip-button" type = "button" style = "font-size:20px"> Flip Camera  </button>
     </div>
     <div id = "QR"> </div> 
+    <p id = "location"></p>
     <script src="script.js"></script>
 </body>
 </html>

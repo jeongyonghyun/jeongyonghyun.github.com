@@ -78,23 +78,36 @@ function startWebRTC(isOfferer) {
     }
   };
 
-  if(navigator.geolocation){
-      console.log("you can use geolocation");
-  }else{
-      console.log("you cannot use geolocation");
-  }
+// getting location of smartphone
+ const x = document.getElementById("location");
     
+    function getLocation(){
+        if(navigator.geolocation){
+            console.log("you can use geolocation");
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }else{
+            console.log("you cannot use geolocation");
+            const msg = x.innerHTML = "Geolocation is not available";
+        }
+    }
+    
+    function showPosition(position){
+        const location = x.innerHTML = "Latitude : " +position.coords.latitude +
+        "<br>Logitude : " + position.coords.longitude; 
+    }
+    
+  /*  
+  const front = false;
+  document.getElementById('flip-button').onclick = function()(front=!front);
+  */
 　const constraints = {
      audio : true,
      video : {
-        facingMode :'environment',
-        width : {min:1024, ideal:1280, max:1920},
-        height : {min:776, ideal:720, max:1080},
+        facingMode : 'user'
      }
  }
     
-  navigator.mediaDevices.getUserMedia(constraints
-     ).then(stream => {
+  navigator.mediaDevices.getUserMedia(constraints).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     // Add your stream to be sent to the conneting peer
