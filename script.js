@@ -77,6 +77,15 @@ function startWebRTC(isOfferer) {
       remoteVideo.srcObject = stream;
     }
   };
+
+  if(navigator.geolocation){
+      console.log("you can use geolocation");
+  }else{
+      console.log("you cannot use geolocation");
+  }
+    
+    
+    
     
   const front = false;
   document.getElementById('flip-button').onclick = function()(front=!front);
