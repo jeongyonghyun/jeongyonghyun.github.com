@@ -6,8 +6,8 @@
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
   <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery.min.js"></script>
-  <script type="text/javascript" src="jqeury.qrcode.js"></script>
+ <!-- <script src="https://code.jquery.com/jquery.min.js"></script>
+  <script type="text/javascript" src="jqeury.qrcode.js"></script>-->
  
   <style>
     html,body {
@@ -36,21 +36,6 @@
         border-radius : 3px;
         border : 1px solid;
         }
-      
-     #containerMap{
-          position:relative;
-          width : 10%;
-         z-index :10;
-          }
-      #containerMap : before{
-          content : "";
-          display : block;
-          padding-top : 56.25%;
-      }
-      #map{
-          position : absolute;
-         float : right;
-            }
       
     #container2{
         position : relative;
@@ -83,15 +68,13 @@
       color: rgba(0, 0, 0, 0.5);
      }
       
-      /*
-      #QR{
-          position : fixed;
-          width:200px;
-          height:200px;
-          margin-top:15px;
-          float = right ;
-          transform: translate(1300px,400px);
-       } */
+      #map{
+          position : absolute;
+          width:30%;
+          height:60%;
+          left:70%;
+        }
+      
   </style>
     <!--
   <script>
