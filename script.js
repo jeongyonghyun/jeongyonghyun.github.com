@@ -87,9 +87,7 @@ function startWebRTC(isOfferer) {
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
-  var dataChannel = pc.createDatachannel("myLabel",{
-      reliable : true
-  });
+  var dataChannel = pc.createDataChannel("myChannel");
     
   dataChannel.onerror = function(err){
       console.log("channel Error: ",err);
