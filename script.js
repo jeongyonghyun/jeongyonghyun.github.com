@@ -87,21 +87,8 @@ function startWebRTC(isOfferer) {
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
-  var dataChannel = pc.createDataChannel("myChannel");
-    
-  dataChannel.onerror = function(err){
-      console.log("channel Error: ",err);
-  };
-    
-  dataChannel.onmessage = function(event){
-      console.log("Got message: ",event.data);
-  };
-    
-    dataChannel.send("hello world!");
   
-  
-  
-  
+
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
