@@ -84,12 +84,6 @@ function startWebRTC(isOfferer) {
       console.log("you cannot use geolocation");
   }
     
-    
-    
-  /*  
-  const front = false;
-  document.getElementById('flip-button').onclick = function()(front=!front);
-  */
 　const constraints = {
      audio : true,
      video : {
