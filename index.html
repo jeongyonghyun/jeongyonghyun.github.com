@@ -15,9 +15,11 @@
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     }
-      
-    #remoteVideo {
+    #remoteVideo { 
           position : fixed;
+          width : 100%;
+          max-width : 1200px;
+          height : auto;
           margin: 5px 5px;
           padding: 0;
           border-radius: 3px;
@@ -25,6 +27,9 @@
         }
      #localVideo {
           position : fixed;
+          width : 100%;
+          max-width : 200px;
+          height : auto;
           transform: translateX(1280px);
           margin: 5px 5px;
           padding: 0;
@@ -72,15 +77,15 @@
 </head>
 <body>
     
-    <video width = 80% height = 85% id="remoteVideo" autoplay></video>
-    <video width = 15% height = 15% id="localVideo" autoplay muted></video>
+    <video id="remoteVideo" autoplay></video>
+    <video id="localVideo" autoplay muted></video>
     <div id = "container">
         <mark style = "background-color: pink"> Access Point :</mark>  <p id = "url"></p>
     </div>
     <div id="container2" >
-    <button id ="flip-button" type = "button" style = "font-size:20px">Flip Camera  </button>
+    <button id ="flip-button" type = "button" style = "font-size:20px"> Flip Camera  </button>
     </div>
-    <div id = "QR"> </div>
+    <div id = "QR"> </div> 
     <script src="script.js"></script>
 </body>
 </html>

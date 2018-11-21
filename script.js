@@ -77,9 +77,9 @@ function startWebRTC(isOfferer) {
       remoteVideo.srcObject = stream;
     }
   };
-/* 
-    const front = false;
-    document.getElementById('flip-button').onclick = function()(front=!front);
+    
+  const front = false;
+  document.getElementById('flip-button').onclick = function()(front=!front);
   
 　const constraints = {
      audio : true,
@@ -88,12 +88,10 @@ function startWebRTC(isOfferer) {
         width : {min:1024, ideal:1280, max:1920},
         height : {min:776, ideal:720, max:1080},
      }
- };*/
+ }
     
-  navigator.mediaDevices.getUserMedia({ 
-     audio : true,
-     video : true,
-     }).then(stream => {
+  navigator.mediaDevices.getUserMedia(constraints
+     ).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     // Add your stream to be sent to the conneting peer
