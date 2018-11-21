@@ -77,30 +77,7 @@ function startWebRTC(isOfferer) {
       remoteVideo.srcObject = stream;
     }
   };
-
-// getting location of smartphone
- const x = document.getElementById("location");
-    
-    function getLocation(){
-        if(navigator.geolocation){
-            console.log("you can use geolocation");
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }else{
-            console.log("you cannot use geolocation");
-            const msg = x.innerHTML = "Geolocation is not available";
-        }
-    }
-    
-    function showPosition(position){
-        const location = x.innerHTML = "Latitude : " +position.coords.latitude +
-        "<br>Logitude : " + position.coords.longitude; 
-    }
-    
-  /*  
-  const front = false;
-  document.getElementById('flip-button').onclick = function()(front=!front);
-  */
-    
+ 
   navigator.mediaDevices.getUserMedia( {
      audio : true,
      video : true
@@ -111,6 +88,24 @@ function startWebRTC(isOfferer) {
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
+    // getting location of smartphone
+ const x = document.getElementById("location");
+    
+    function getLocation(){
+        if(navigator.geolocation){
+            console.log("you can use geolocation");
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }else{
+            console.log("you cannot use geolocation");
+            x.innerHTML = "Geolocation is not available";
+        }
+    }
+    
+    function showPosition(position){
+        x.innerHTML = "Latitude : " +position.coords.latitude +
+        "<br>Logitude : " + position.coords.longitude; 
+    }
+    
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
