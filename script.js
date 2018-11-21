@@ -3,6 +3,8 @@ if (!location.hash) {
   location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 const roomHash = location.hash.substring(1);
+const target = document.getElementById("url");
+const roomNo = target.innerHTML = "https://jeongyonghyun.github.io/#" + roomHash;
 
 // TODO: Replace with your own channel ID
 const drone = new ScaleDrone('63wnzap0klxFE9at');
@@ -15,7 +17,6 @@ const configuration = {
 };
 let room;
 let pc;
-
 
 function onSuccess() {};
 function onError(error) {
@@ -86,6 +87,23 @@ function startWebRTC(isOfferer) {
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
+  var dataChannel = pc.createDatachannel("myLabel",{
+      reliable : true
+  });
+    
+  dataChannel.onerror = function(err){
+      console.log("channel Error: ",err);
+  };
+    
+  dataChannel.onmessage = function(event){
+      console.log("Got message: ",event.data);
+  };
+    
+    dataChannel.send("hello world!");
+  
+  
+  
+  
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us

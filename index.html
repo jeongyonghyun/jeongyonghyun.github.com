@@ -22,11 +22,12 @@
       #container1{
         position : relative;
         width : 68%;
+        left : 5px;
       }
       #container1 : before{
           content : "";
           display : block;
-          padding-top : 56.25%;
+          padding-top : 50%;
       }
     #remoteVideo { 
         top : 0;
@@ -91,13 +92,13 @@
           text : "&(url)" 
       });
   </script>-->
-   <script>
+ <!--<script>
         function onLoad(){
             initMap();
         };
         
         var map;
-        var centerLocation = {lat: 35.480523, lng : 139.645188};
+        var centerLocation = {lat: 35, lng : 139};
         
         function initMap(){
             map = new google.maps.Map(document.getElementById('map'),{
@@ -113,12 +114,12 @@
             
             marker.setMap(map);
         };
-    </script>
+    </script>-->
 </head>
     
  <body onload = "onLoad()">   
     <div id = "map">
-    </div>   
+    </div>
 </body>
     
 <body>
@@ -132,9 +133,9 @@
     </div>
     
     <div id = "container3">
-        <mark style = "background-color: pink"> Access Point :</mark>  <p id = "url"></p>
+        <mark style = "background-color: pink"> Access Point :</mark> <a href="#"><p id = "url"> </p></a> 
     </div>
- 
+    <button id="btn"></button>
     <div id = "location"></div>
     <script src="script.js"></script>
 </body>
