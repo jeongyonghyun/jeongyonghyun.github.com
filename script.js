@@ -86,10 +86,10 @@ function startWebRTC(isOfferer) {
     
     
     
-    
+  /*  
   const front = false;
   document.getElementById('flip-button').onclick = function()(front=!front);
-  
+  */
 　const constraints = {
      audio : true,
      video : {
