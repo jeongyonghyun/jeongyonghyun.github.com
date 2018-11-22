@@ -22,7 +22,7 @@ let dataChannel;
 const name = prompt("Input your name");
 function onSuccess() {};
 function onError(error) {
-  console.error(error);
+   console.error(error);
 };
 
 drone.on('open', error => {
@@ -174,7 +174,7 @@ function checkDataChannelState(){
 
 function insertMessageToDOM(options,isFromMe){
     const template = document.querySelector('template[data-template = "message"]');
-    const nameEl =template.content.querySelector('.message__name');
+    const nameEl = template.content.querySelector('.message__name');
     if(options.name){
         nameEl.innerText = options.name;
     }
