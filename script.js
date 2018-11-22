@@ -18,11 +18,11 @@ const configuration = {
 let room;
 let pc;
 let dataChannel;
-
+/*
 function onSuccess() {};
 function onError(error) {
    console.error(error);
-};
+};*/
 
 const name = prompt("Input your name");
 drone.on('open', error => {
