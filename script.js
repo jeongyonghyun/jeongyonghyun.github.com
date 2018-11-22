@@ -59,7 +59,7 @@ function sendMessage(message) {
 }
 
 function startWebRTC(isOfferer) {
-  console.log('Starting WebRTC in as ', isOffer?'offerer':'waiter');
+  console.log('Starting WebRTC in as ', isOfferer?'offerer':'waiter');
   pc = new RTCPeerConnection(configuration);
 
   // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
@@ -178,7 +178,7 @@ function insertMessageToDOM(options,isFromMe){
     if(options.name){
         nameEl.innerText = options.name;
     }
-    tempalte.content.querySelector('.message__bubble').innerText = options.conten;
+    template.content.querySelector('.message__bubble').innerText = options.conten;
     const clone = document.importNode(template.content,true);
     const messageEl = clone.querySelector('.message');
     if(isFromMe){
@@ -187,7 +187,7 @@ function insertMessageToDOM(options,isFromMe){
         messageEl.classList.add('message--theirs');
     }
     
-    const messageEl = document.querySelector('.message');
+    const messagesEl = document.querySelector('.message');
     messagesEl.appendChild(clone);
     
     messagesEl.scrollTop = messageEl.scrollHeight -messagesEl.clientHeight;
