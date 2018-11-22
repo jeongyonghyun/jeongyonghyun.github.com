@@ -187,7 +187,7 @@ function insertMessageToDOM(options,isFromMe){
         messageEl.classList.add('message--theirs');
     }
     
-    const messagesEl = document.querySelector('.message');
+    const messagesEl = document.querySelector('.messages');
     messagesEl.appendChild(clone);
     
     messagesEl.scrollTop = messageEl.scrollHeight -messagesEl.clientHeight;
@@ -206,4 +206,3 @@ form.addEventListener('submit',()=>{
     dataChannel.send(JSON.stringify(data));
     insertMessageToDOM(data.true);
 });
-    insertMessageToDOM({content : 'Chat URL is'+location.href});

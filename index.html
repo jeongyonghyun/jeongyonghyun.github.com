@@ -25,7 +25,7 @@
       #container1 : before{
           content : "";
           display : block;
-          padding-top : 56.5%;
+          padding-top : 50%;
       }
     #remoteVideo { 
         top : 0;
@@ -106,13 +106,19 @@
         };
     </script>
     <style>
+        #box{
+            position : relative;
+            float :right ;
+            transform : translate(0%,-60%);
+            right : 5px;
+        }
      .content {
       box-shadow: rgba(156, 172, 172, 0.2) 0px 2px 2px, rgba(156, 172, 172, 0.2) 0px 4px 4px, rgba(156, 172, 172, 0.2) 0px 8px 8px, rgba(156, 172, 172, 0.2) 0px 16px 16px, rgba(156, 172, 172, 0.2) 0px 32px 32px, rgba(156, 172, 172, 0.2) 0px 64px 64px;
       border-radius: 3px;
       height: 100vh;
       max-height: 200px;
       width: 100vw;
-      max-width: 400px;
+      max-width: 370px;
       display: flex;
       flex-direction: column;
       float = right;
@@ -153,7 +159,7 @@
       flex-shrink: 0;
     }
     input {
-      height: 76px;
+      height: 50px;
       border: none;
       flex-grow: 1;
       padding: 0 30px;
@@ -191,6 +197,7 @@
     <button id="btn"></button>
     <div id = "location"></div>
     
+    <div id = "box">
     <div class="content">
     <div class="messages">
 
@@ -200,7 +207,8 @@
       <button type="submit">Send</button>
     </form>
     </div>
-        
+    </div>
+    
     <template data-template="message">
     <div class="message">
       <div class="message__name"></div>
