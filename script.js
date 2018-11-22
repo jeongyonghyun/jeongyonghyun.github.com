@@ -18,11 +18,11 @@ const configuration = {
 let room;
 let pc;
 let dataChannel;
-/*
+
 function onSuccess() {};
 function onError(error) {
    console.error(error);
-};*/
+};
 
 const name = prompt("Input your name");
 drone.on('open', error => {
@@ -130,7 +130,7 @@ function startWebRTC(isOfferer) {
 
 function startListeningToSignals(){
     room.on('data',(message,client)=>{
-        if(client.id === drone.cliendId){
+        if(client.id === drone.clientId){
             return;
         }
         if(message.sdp){
@@ -139,9 +139,9 @@ function startListeningToSignals(){
                 
                 if(pc.remoteDescription.type === 'offer'){
                     console.log('Answering offer');
-                    pc.createAnswer(localDescCreated,error => console.error(error));
+                    pc.createAnswer(localDescCreated,onError);
                 }
-            },error => console.error(error));
+            },onError);
         }else if(message.candidate){
             pc.addIceCandidate(new RTCIceCandidate(message.candidate));
         }
