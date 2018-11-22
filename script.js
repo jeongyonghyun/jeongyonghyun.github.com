@@ -21,7 +21,7 @@ let dataChannel;
 
 function onSuccess() {};
 function onError(error) {
-   console.error(error);
+   console.log(error);
 };
 
 const name = prompt("Input your name");
