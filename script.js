@@ -19,12 +19,12 @@ let room;
 let pc;
 let dataChannel;
 
-const name = prompt("Input your name");
 function onSuccess() {};
 function onError(error) {
    console.error(error);
 };
 
+const name = prompt("Input your name");
 drone.on('open', error => {
   if (error) {
     return console.error(error);
@@ -32,7 +32,7 @@ drone.on('open', error => {
   room = drone.subscribe(roomName);
   room.on('open', error => {
     if (error) {
-      return console.error(error);
+      onError(error);
     }
       console.log('Connected to Signaling server');
   });
