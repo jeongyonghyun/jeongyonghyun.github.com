@@ -204,5 +204,5 @@ form.addEventListener('submit',()=>{
         content: value,
     };
     dataChannel.send(JSON.stringify(data));
-    insertMessageToDOM(data.true);
+    insertMessageToDOM(data,true);
 });
