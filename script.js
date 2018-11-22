@@ -137,7 +137,7 @@ function startListeningToSignals(){
             pc.setRemoteDescription(new RTCSessionDescription(message.sdp),()=>{
                 console.log('pc.remoteDescription.type',pc.remoteDescription.type);
                 
-                if(pc.remote.Description.type === 'offer'){
+                if(pc.remoteDescription.type === 'offer'){
                     console.log('Answering offer');
                     pc.createAnswer(localDescCreated,error => console.error(error));
                 }
