@@ -6,8 +6,6 @@
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
   <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
- <!-- <script src="https://code.jquery.com/jquery.min.js"></script>
-  <script type="text/javascript" src="jqeury.qrcode.js"></script>-->
  
   <style>
     html,body {
@@ -46,7 +44,7 @@
       #container2 : before{
           content : "";
           display : block;
-          padding-top : 56.25%;
+          padding-top : 50%; 
       }
       #localVideo {
         width : 100%;
@@ -84,14 +82,6 @@
       }
       
   </style>
-    <!--
-  <script>
-      jquery('#QR').qrcode({
-          width : 150,
-          height : 150,
-          text : "&(url)" 
-      });
-  </script>-->
   <script>
         function onLoad(){
             initMap();
@@ -115,12 +105,9 @@
             marker.setMap(map);
         };
     </script>
-    
-    
-    
 </head>
     
- <body onload = "onLoad()">   
+<body onload = "onLoad()">   
     <div id = "map">
     </div>
 </body>
@@ -129,7 +116,6 @@
     <div id = "container1">
         <video id="remoteVideo" autoplay></video>
     </div>
-    
         
     <div id = "container2">
         <video id="localVideo" autoplay muted></video>
