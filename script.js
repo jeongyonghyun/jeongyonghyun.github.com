@@ -8,8 +8,8 @@ const roomUrl = "https://jeongyonghyun.github.io/#" + roomHash;
 target.innerHTML = roomUrl;
 
 const qrTarget = document.getElementById("qrCode");
-const qrAddr = "https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl="+roomUrl;
-qrTarget.src = '"'+ qrAddr + '"';
+const qrAddr = '"https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl='+roomUrl + '"';
+qrTarget.setAttribute('src',qrAddr);
 console.log("img src = ",qrAddr);
 
 
