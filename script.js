@@ -4,8 +4,16 @@ if (!location.hash) {
 }
 const roomHash = location.hash.substring(1);
 const target = document.getElementById("url");
-const roomNo = target.innerHTML = "https://jeongyonghyun.github.io/#" + roomHash;
+const roomUrl = "https://jeongyonghyun.github.io/#" + roomHash;
+target.innerHTML = roomUrl;
 
+const qrTarget = document.getElementById("qrCode");
+const qrAddr = "https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl="+roomUrl;
+qrTarget.src = '"'+ qrAddr + '"';
+console.log("img src = ",qrAddr);
+
+
+      
 // TODO: Replace with your own channel ID
 const drone = new ScaleDrone('63wnzap0klxFE9at');
 // Room name needs to be prefixed with 'observable-'
@@ -21,7 +29,7 @@ let dataChannel;
 
 function onSuccess() {};
 function onError(error) {
-   console.log(error);
+   console.error(error);
 };
 
 const name = prompt("Input your name");
