@@ -28,7 +28,7 @@ let lat, long;
 
 function onSuccess() {};
 function onError(error) {
-   console.error(error);
+   return console.error(error);
 };
 
 const name = prompt("Input your name");
@@ -134,7 +134,7 @@ function startWebRTC(isOfferer) {
 
   navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: true,
+    video: {facingMode : "environment"},
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
