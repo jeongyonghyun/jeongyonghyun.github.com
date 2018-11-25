@@ -5,15 +5,13 @@ if (!location.hash) {
 const roomHash = location.hash.substring(1);
 const target = document.getElementById("url");
 const roomUrl = "https://jeongyonghyun.github.io/#" + roomHash;
+const newUrl = encodeURIComponent(roomUrl);
 target.innerHTML = roomUrl;
+console.log(roomUrl);
 
-const qrTarget = document.getElementById("qrCode");
-const qrAddr = '"https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl='+roomUrl + '"';
-qrTarget.setAttribute('src',qrAddr);
-console.log("img src = ",qrAddr);
+googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
+$('#qrCode').attr('src', googleQRUrl + newUrl,'&choe=UTF-8');
 
-
-      
 // TODO: Replace with your own channel ID
 const drone = new ScaleDrone('63wnzap0klxFE9at');
 // Room name needs to be prefixed with 'observable-'
@@ -26,6 +24,7 @@ const configuration = {
 let room;
 let pc;
 let dataChannel;
+let lat, long;
 
 function onSuccess() {};
 function onError(error) {
@@ -91,7 +90,39 @@ function startWebRTC(isOfferer) {
           setupDataChannel();
       }
   }
+    
     startListeningToSignals();
+    
+  // find location
+  if(navigator.geolocation){
+            console.log("geolocation is available");
+            var options = {
+                enableHighAccuracy : true,
+                timeout : Infinity,
+                maximumAge : 0
+            };
+            var watchID = navigator.geolocation.watchPosition(showPosition,errorPosition,options);
+            setTimeout(function(){
+                navigator.geolocation.clearWatch(watchID);
+            },300000);
+      
+        }else{
+            alert("you cant use this service");
+        }
+    
+        function showPosition(position){
+            lat = position.coords.latitude;
+            long = position.coords.longitude;
+            var centerLocation = {lat: lat, lng : long};
+            console.log("Center location : ", centerLocation);
+            document.getElementById("lat").value = lat;
+            document.getElementById("long").value = long;
+            
+        }
+
+        function errorPosition(error){
+            alert(error.message);
+        }
     
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {

@@ -5,7 +5,7 @@
   <meta name = "viewport" id = "viewport" content = "width=device-width, height=device-height,initial-scale=1">
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
   <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
  
   <style>
     html,body {
@@ -80,31 +80,15 @@
           height:10%;
           left:70%;
       }
+      .loc{
+          width : 40%
+          background-color: grey;
+      }
+      #lat, #long {
+          border : 2px solid black;
+      }
       
   </style>
-  <script>
-        function onLoad(){
-            initMap();
-        };
-        
-        var map;
-        var centerLocation = {lat: 35, lng : 139};
-        
-        function initMap(){
-            map = new google.maps.Map(document.getElementById('map'),{
-                center : centerLocation,
-                zoom : 17
-            });
-            
-            var marker = new google.maps.Marker({
-                position : centerLocation,
-                //icon : 'mylocation.png',
-                animation : google.maps.Animation.BOUNCE
-            });
-            
-            marker.setMap(map);
-        };
-    </script>
     <style>
         #box{
             position : relative;
@@ -176,7 +160,30 @@
     </style>
 </head>
     
-<body onload = "onLoad()">   
+<body onload = "onLoad()">
+     <script>
+        function onLoad(){
+            initMap();
+        };
+        
+        var map;
+        var centerLocation = {lat: 35, lng : 139};
+        
+        function initMap(){
+            map = new google.maps.Map(document.getElementById('map'),{
+                center : centerLocation,
+                zoom : 17
+            });
+            
+            var marker = new google.maps.Marker({
+                position : centerLocation,
+                //icon : 'mylocation.png',
+                animation : google.maps.Animation.BOUNCE
+            });
+            
+            marker.setMap(map);
+        };
+    </script>
     <div id = "map">
     </div>
 </body>
@@ -194,22 +201,22 @@
         <mark style = "background-color: pink"> Access Point :</mark><p id = "url"> </p>
     </div>
     
-    <img id = "qrCode"/>
+  
+    <div>
+	<img id="qrCode" src='' />
+
+	</div>
+
     <!--<img src =  "https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl=https://jeongyonghyun.github.io/#5646e">
     https://chart.apis.google.com/chart?cht=qr&chs=300x300&choe=Shift_JIS&chl=https://qiita.com-->
     
-    <button id="btn" type = "button"> Check location </button>
-    
-    <label for ="lat"> Latitude : </label>
-    <input type ="text" id="lat" name="lat">
-    <label for ="long"> Latitude : </label>
-    <input type ="text" id="long" name="long">
-    <p><a href ="" id ="map" target="_blank"> see map </a></p>
-    
-    
-    
-    
-    
+    <button id="btn" type = "button"> </button>
+    <div class = "loc">
+        <label for ="lat"> Latitude : </label>
+        <input type ="text" id="lat" name="lat">
+        <label for ="long"> Latitude : </label>
+        <input type ="text" id="long" name="long">
+    </div>
     
     <div id = "box">
     <div class="content">
