@@ -64,13 +64,13 @@
         button:last-of-type {
           margin: 0;
         }
-
+        
         p.borderBelow {
           margin: 0 0 20px 0;
           padding: 0 0 20px 0;
         }
-
-        video {
+      
+      video {
           vertical-align: top;
           --width: 25vw;
           width: var(--width);
@@ -85,6 +85,7 @@
         video#gumVideo {
           margin: 0 20px 20px 0;
         }
+
       #container3{
           position : relative;
           left :5px
@@ -238,17 +239,20 @@
 	<img id="qrCode" src='' />
 
 	</div>
-
+  
     <div id="container">
         <video id="gum" playsinline autoplay muted></video>
         <video id="recorded" playsinline loop></video>
 
-    <div>
-        <button id="record" disabled>Start Recording</button>
-        <button id="play" disabled>Play</button>
-        <button id="download" disabled>Download</button>
     </div>
 
+    <div>
+        <button id ="start">Ready</button>
+        <button id="record">Start Recording</button>
+        <button id="play" disabled>Play</button>
+        <button id="download" disabled>Download</button>
+    </div>   
+    
     <div>
         <h4>Media Stream Constraints options</h4>
         <p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p>

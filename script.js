@@ -28,7 +28,7 @@ let lat, long;
 
 function onSuccess() {};
 function onError(error) {
-   return console.error(error);
+    console.error(error);
 };
 
 const name = prompt("Input your name");
