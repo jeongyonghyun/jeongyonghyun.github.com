@@ -167,7 +167,7 @@ function startWebRTC(isOfferer) {
       );
     }
   });
-    
+
     //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 'use strict';
 
@@ -179,26 +179,13 @@ let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
 
-const canvas = document.querySelector('canvas#gum');
-const video = document.querySelector('video#recorded'); /////
-const errorMsgElement = document.querySelector('span#errorMsg');    
-const recordButton = document.querySelector('button#record');
-const playButton = document.querySelector('button#play');
-const downloadButton = document.querySelector('button#download');
-recordButton.onclick = toggleRecording;
-playButton.onclick = play;
-downloadButton.onclick = download;
-    
-    
 const errorMsgElement = document.querySelector('span#errorMsg');
-    /*
 const recordedVideo = document.querySelector('video#recorded');
-const recordButton = document.querySelector('button#record');*/
+const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
-    const t = new Date();
-    //console.log("date: " ,t)
     startRecording();
+    const t = new Date(); 
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
@@ -207,21 +194,23 @@ recordButton.addEventListener('click', () => {
   }
 });
 
+const playButton = document.querySelector('button#play');
 playButton.addEventListener('click', () => {
   const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
   recordedVideo.src = null;
   recordedVideo.srcObject = null;
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
   recordedVideo.controls = true;
+  recordedVideo.play();
 });
 
+const downloadButton = document.querySelector('button#download');
 downloadButton.addEventListener('click', () => {
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  console.log("data is : ",t);
   a.download = t + '.webm';   //// need to be revised with date+time function
   document.body.appendChild(a);
   a.click();
@@ -231,12 +220,11 @@ downloadButton.addEventListener('click', () => {
   }, 100);
 });
 
-    /*
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
   sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
   console.log('Source buffer: ', sourceBuffer);
-}*/
+}
 
 function handleDataAvailable(event) {
   if (event.data && event.data.size > 0) {
@@ -244,58 +232,44 @@ function handleDataAvailable(event) {
   }
 }
 
-function handleStop(event) {
-  console.log('Recorder stopped: ', event);
-  const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-  video.src = window.URL.createObjectURL(superBuffer);
-}
-
-function toggleRecording() {
-  if (recordButton.textContent === 'Start Recording') {
-    startRecording();
-  } else {
-    stopRecording();
-    recordButton.textContent = 'Start Recording';
-    playButton.disabled = false;
-    downloadButton.disabled = false;
-  }
-}    
-    
 function startRecording() {
-  let options = {mimeType: 'video/webm'};
   recordedBlobs = [];
-  try {
-    mediaRecorder = new MediaRecorder(stream, options);
-  } catch (e0) {
-    console.log('Unable to create MediaRecorder with options Object: ', e0);
-    try {
-      options = {mimeType: 'video/webm,codecs=vp9'};
-      mediaRecorder = new MediaRecorder(stream, options);
-    } catch (e1) {
-      console.log('Unable to create MediaRecorder with options Object: ', e1);
-      try {
-        options = 'video/vp8'; // Chrome 47
-        mediaRecorder = new MediaRecorder(stream, options);
-      } catch (e2) {
-        alert('MediaRecorder is not supported by this browser.\n\n' +
-          'Try Firefox 29 or later, or Chrome 47 or later, ' +
-          'with Enable experimental Web Platform features enabled from chrome://flags.');
-        console.error('Exception while creating MediaRecorder:', e2);
-        return;
+  let options = {mimeType: 'video/webm;codecs=vp9'};
+  if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+    console.error(`${options.mimeType} is not Supported`);
+    errorMsgElement.innerHTML = `${options.mimeType} is not Supported`;
+    options = {mimeType: 'video/webm;codecs=vp8'};
+    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+      console.error(`${options.mimeType} is not Supported`);
+      errorMsgElement.innerHTML = `${options.mimeType} is not Supported`;
+      options = {mimeType: 'video/webm'};
+      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+        console.error(`${options.mimeType} is not Supported`);
+        errorMsgElement.innerHTML = `${options.mimeType} is not Supported`;
+        options = {mimeType: ''};
       }
     }
   }
+
+  try {
+    mediaRecorder = new MediaRecorder(window.stream, options);
+  } catch (e) {
+    console.error('Exception while creating MediaRecorder:', e);
+    errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
+    return;
+  }
+
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
   recordButton.textContent = 'Stop Recording';
   playButton.disabled = true;
   downloadButton.disabled = true;
-  mediaRecorder.onstop = handleStop;
+  mediaRecorder.onstop = (event) => {
+    console.log('Recorder stopped: ', event);
+  };
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.start(10); // collect 10ms of data
   console.log('MediaRecorder started', mediaRecorder);
 }
-    
-    
 
 function stopRecording() {
   mediaRecorder.stop();
@@ -303,11 +277,11 @@ function stopRecording() {
 }
 
 function handleSuccess(stream) {
-  //&&&recordButton.disabled = false;
+  recordButton.disabled = false;
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
 
-  const gumVideo = document.querySelector('video#gum');
+  const gumVideo = document.querySelector('video#remoteVideo');
   gumVideo.srcObject = stream;
 }
 
