@@ -279,10 +279,11 @@ function handleSuccess(stream) {
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
   
-  const gumVideo = document.querySelector('video#remoteVideo');
+  const gumVideo = document.querySelector('video#gumVideo');
+  const stream = event.streams[0];
   gumVideo.srcObject = stream;
 }
-
+    
 async function init(constraints) {
   try {
     pc.ontrack = event => {
