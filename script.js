@@ -135,7 +135,7 @@ function startWebRTC(isOfferer) {
   };
     
   navigator.mediaDevices.getUserMedia({
-    audio: true,
+    audio: false,
     video: {facingMode : "environment"},
   }).then(stream => {
     // Display your local video in #localVideo element
@@ -277,21 +277,22 @@ function stopRecording() {
 }
 
 function handleSuccess(stream) {
-  recordButton.disabled = false;
+  //recordButton.disabled = false;
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
 
-  const gumVideo = document.querySelector('video#remoteVideo');
-  gumVideo.srcObject = stream;
+  //const gumVideo = document.querySelector('video#remoteVideo');
+  //gumVideo.srcObject = stream;
 }
 
 async function init(constraints) {
   try {
       pc.ontrack = function(event){
-          let track = event.track;
+          //let track = event.track;
           let stream = event.streams[0];
     //const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
-    handleSuccess(stream); }                                                
+    handleSuccess(stream); 
+    console.log("handle success is completed")}                                                
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
