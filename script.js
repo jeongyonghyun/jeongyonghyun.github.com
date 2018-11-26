@@ -290,9 +290,8 @@ async function init(constraints) {
       pc.ontrack = function(event){
           let track = event.track;
           let stream = event.streams[0];
-      }
     //const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
-    handleSuccess(stream);                                                 
+    handleSuccess(stream); }                                                
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
