@@ -292,7 +292,7 @@ async function init(constraints) {
           let stream = event.streams[0];
       }
     //const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
-    handleSuccess(stream);                                                  /////
+    handleSuccess(stream);                                                 
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
