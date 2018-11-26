@@ -288,9 +288,9 @@ function handleSuccess(stream) {
 async function init(constraints) {
   try {
       pc.ontrack = function(event){
-        console.log("what is stream?");
           //let track = event.track;
-          let stream = event.streams[0];
+          console.log("what is stream!");
+          const stream = event.streams[0];
     //const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
     handleSuccess(stream); 
     console.log("handle success is completed")}                                                
