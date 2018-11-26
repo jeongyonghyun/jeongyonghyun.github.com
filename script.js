@@ -176,7 +176,6 @@ mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
-const time;
 
 const errorMsgElement = document.querySelector('span#errorMsg');
 const recordedVideo = document.querySelector('video#recorded');
@@ -184,7 +183,7 @@ const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
     startRecording();
-    time = new Date(); 
+    const time = new Date(); 
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
