@@ -5,8 +5,8 @@
   <meta name = "viewport" id = "viewport" content = "width=device-width, height=device-height,initial-scale=1">
   <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
   <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
- 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <title> Camera Image </title>
   <style>
     html,body {
       margin: 0;
@@ -54,7 +54,38 @@
         border : 1px solid;
         }
       
-    #container3{
+        button {
+          margin: 0 3px 10px 0;
+          padding-left: 2px;
+          padding-right: 2px;
+          width: 99px;
+        }
+
+        button:last-of-type {
+          margin: 0;
+        }
+
+        p.borderBelow {
+          margin: 0 0 20px 0;
+          padding: 0 0 20px 0;
+        }
+
+        video {
+          vertical-align: top;
+          --width: 25vw;
+          width: var(--width);
+          height: calc(var(--width) * 0.5625);
+          border : 2px solid;
+        }
+
+        video:last-of-type {
+          margin: 0 0 20px 0;
+        }
+
+        video#gumVideo {
+          margin: 0 20px 20px 0;
+        }
+      #container3{
           position : relative;
           left :5px
       }
@@ -88,7 +119,8 @@
           border : 2px solid black;
       }
       
-  </style>
+        </style>
+
     <style>
         #box{
             position : relative;
@@ -190,7 +222,7 @@
     
 <body>
     <div id = "container1">
-        <video id="remoteVideo" autoplay></video>
+        <video id="remoteVideo" playsinline autoplay></video>
     </div>
         
     <div id = "container2">
@@ -207,8 +239,29 @@
 
 	</div>
 
-    <!--<img src =  "https://chart.googleapis.com/chart?chs=200x200&amp;cht=qr&amp;chl=https://jeongyonghyun.github.io/#5646e">
-    https://chart.apis.google.com/chart?cht=qr&chs=300x300&choe=Shift_JIS&chl=https://qiita.com-->
+    <div id="container">
+    <video id="gum" playsinline autoplay muted></video>
+    <video id="recorded" playsinline loop></video>
+
+    <div>
+        <button id="start">Start camera</button>
+        <button id="record" disabled>Start Recording</button>
+        <button id="play" disabled>Play</button>
+        <button id="download" disabled>Download</button>
+    </div>
+
+    <div>
+        <h4>Media Stream Constraints options</h4>
+        <p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p>
+    </div>
+
+    <div>
+        <span id="errorMsg"></span>
+    </div>
+
+</div>
+    
+    
     
     <button id="btn" type = "button"> </button>
     <div class = "loc">
@@ -236,19 +289,11 @@
       <div class="message__bubble"></div>
     </div>
     </template>
-
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <script src="script.js"></script>
+    <!-- include adapter for srcObject shim -->
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="../../../js/lib/ga.js"></script>
+    <script src="script.js" async></script>
 </body>
          
 </html>
