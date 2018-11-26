@@ -124,10 +124,9 @@ function startWebRTC(isOfferer) {
             alert(error.message);
         }
     
-    let stream;
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
-     stream = event.streams[0];
+     const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
       recordButton.disabled = false;
@@ -184,8 +183,9 @@ const recordedVideo = document.querySelector('video#recorded');
 const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
-    startRecording();
     const t = new Date();
+    console.log("date: " ,t)
+    startRecording();
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
@@ -201,7 +201,6 @@ playButton.addEventListener('click', () => {
   recordedVideo.srcObject = null;
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
   recordedVideo.controls = true;
-  recordedVideo.play();
 });
 
 const downloadButton = document.querySelector('button#download');
@@ -252,7 +251,7 @@ function startRecording() {
   }
 
   try {
-    mediaRecorder = new MediaRecorder(window.stream, options);
+    mediaRecorder = new MediaRecorder(window.stream, options); ////
   } catch (e) {
     console.error('Exception while creating MediaRecorder:', e);
     errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
@@ -281,12 +280,16 @@ function handleSuccess(stream) {
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
 
-  const gumVideo = document.querySelector('video#gumVideo');
+  const gumVideo = document.querySelector('video#gum');
   gumVideo.srcObject = stream;
 }
 
 async function init(constraints) {
   try {
+      pc.ontrack = function(event){
+          let track = event.track;
+          let stream = event.streams[0];
+      }
     //const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
     handleSuccess(stream);                                                  /////
   } catch (e) {
