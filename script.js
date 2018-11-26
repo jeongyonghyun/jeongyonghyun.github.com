@@ -183,8 +183,7 @@ const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
     startRecording();
-    const time;
-    time = new Date(); 
+    const time  new Date();
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
