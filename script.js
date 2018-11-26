@@ -123,15 +123,16 @@ function startWebRTC(isOfferer) {
         function errorPosition(error){
             alert(error.message);
         }
-    
+    let stream;
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
-    const stream = event.streams[0];
+     stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
+      recordButton.disabled = false;
     }
   };
-
+    
   navigator.mediaDevices.getUserMedia({
     audio: true,
     video: {facingMode : "environment"},
@@ -275,7 +276,7 @@ function stopRecording() {
 }
 
 function handleSuccess(stream) {
-  recordButton.disabled = false;
+  //&&&recordButton.disabled = false;
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
 
@@ -285,8 +286,8 @@ function handleSuccess(stream) {
 
 async function init(constraints) {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    handleSuccess(stream);
+    const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
+    handleSuccess(stream);                                                  /////
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
