@@ -166,7 +166,7 @@ function startWebRTC(isOfferer) {
     }
   });
     
-  //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
+ //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 'use strict';
 
 /* globals MediaRecorder */
@@ -176,6 +176,7 @@ mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
+const time;
 
 const errorMsgElement = document.querySelector('span#errorMsg');
 const recordedVideo = document.querySelector('video#recorded');
@@ -183,6 +184,7 @@ const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
     startRecording();
+    time = new Date(); 
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
@@ -208,7 +210,7 @@ downloadButton.addEventListener('click', () => {
   const a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = 'test.webm';   //// need to be revised with date+time function
+  a.download = time + '.webm';   //// need to be revised with date+time function
   document.body.appendChild(a);
   a.click();
   setTimeout(() => {
@@ -292,24 +294,21 @@ async function init(constraints) {
   }
 }
 
-document.querySelector('button#start').addEventListener('click', async () => {
+document.querySelector('button#record').addEventListener('click', async () => {
   const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
   const constraints = {
     audio: {
       echoCancellation: {exact: hasEchoCancellation}
     },
     video: {
-      width: 640, height: 480
+      width: 1280, height: 720
     }
   };
   console.log('Using media constraints:', constraints);
   await init(constraints);
 });
 
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//    
-    
-    
-    
+//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
     
 }
 
