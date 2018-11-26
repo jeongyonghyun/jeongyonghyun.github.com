@@ -183,7 +183,7 @@ const recordButton = document.querySelector('button#record');
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
     startRecording();
-    const time  new Date();
+    const t = new Date();
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
@@ -209,7 +209,7 @@ downloadButton.addEventListener('click', () => {
   const a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = time + '.webm';   //// need to be revised with date+time function
+  a.download = t + '.webm';   //// need to be revised with date+time function
   document.body.appendChild(a);
   a.click();
   setTimeout(() => {
