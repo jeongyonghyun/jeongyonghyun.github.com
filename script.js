@@ -123,6 +123,7 @@ function startWebRTC(isOfferer) {
         function errorPosition(error){
             alert(error.message);
         }
+    
     let stream;
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
@@ -280,13 +281,13 @@ function handleSuccess(stream) {
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
 
-  const gumVideo = document.querySelector('video#remoteVideo');
+  const gumVideo = document.querySelector('video#gumVideo');
   gumVideo.srcObject = stream;
 }
 
 async function init(constraints) {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
+    //const stream = await navigator.mediaDevices.getUserMedia(constraints); //////
     handleSuccess(stream);                                                  /////
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
