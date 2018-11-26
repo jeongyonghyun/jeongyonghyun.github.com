@@ -130,6 +130,7 @@ function startWebRTC(isOfferer) {
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
       recordButton.disabled = false;
+      gum.srcObject = stream;
     }
   };
     
