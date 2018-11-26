@@ -248,7 +248,7 @@ function startRecording() {
       }
     }
   }
-
+  
   try {
     mediaRecorder = new MediaRecorder(window.stream, options);
   } catch (e) {
@@ -278,14 +278,16 @@ function handleSuccess(stream) {
   recordButton.disabled = false;
   console.log('getUserMedia() got stream:', stream);
   window.stream = stream;
-
+  
   const gumVideo = document.querySelector('video#remoteVideo');
   gumVideo.srcObject = stream;
 }
 
 async function init(constraints) {
   try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    pc.ontrack = event => {
+    const stream = event.streams[0];}
+   // const stream = await navigator.mediaDevices.getUserMedia(constraints);
     handleSuccess(stream);
   } catch (e) {
     console.error('navigator.getUserMedia error:', e);
@@ -293,6 +295,7 @@ async function init(constraints) {
   }
 }
 
+    
 document.querySelector('button#record').addEventListener('click', async () => {
   const hasEchoCancellation = document.querySelector('#echoCancellation').checked;
   const constraints = {
@@ -303,6 +306,7 @@ document.querySelector('button#record').addEventListener('click', async () => {
       width: 1280, height: 720
     }
   };
+    
   console.log('Using media constraints:', constraints);
   await init(constraints);
 });
