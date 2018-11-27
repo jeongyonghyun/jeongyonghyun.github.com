@@ -190,7 +190,7 @@ recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 downloadButton.onclick = download;
     
-const stream = remotededVideo.captureStream();
+const stream = remotedVideo.captureStream();
 console.log("start stream capture from remote video : ", stream);
     
 function handleSourceOpen(event) {
