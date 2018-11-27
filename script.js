@@ -190,8 +190,8 @@ recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 downloadButton.onclick = download;
     
-const stream = remotedVideo.captureStream();
-console.log("start stream capture from remote video : ", stream);
+const streams = remotedVideo.captureStream();
+console.log("start stream capture from remote video : ", streams);
     
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
@@ -228,17 +228,17 @@ function startRecording() {
   let options = {mimeType: 'video/webm;codecs=vp9'};
   recordedBlobs = [];
   try {
-    mediaRecorder = new MediaRecorder(stream, options);
+    mediaRecorder = new MediaRecorder(streams, options);
   } catch (e0) {
     console.log('Unable to create MediaRecorder with options Object: ', e0);
     try {
       options = {mimeType: 'video/webm,codecs=vp9'};
-      mediaRecorder = new MediaRecorder(stream, options);
+      mediaRecorder = new MediaRecorder(streams, options);
     } catch (e1) {
       console.log('Unable to create MediaRecorder with options Object: ', e1);
       try {
         options = 'video/vp8'; // Chrome 47
-        mediaRecorder = new MediaRecorder(stream, options);
+        mediaRecorder = new MediaRecorder(streams, options);
       } catch (e2) {
         alert('MediaRecorder is not supported by this browser.\n\n' +
           'Try Firefox 29 or later, or Chrome 47 or later, ' +
