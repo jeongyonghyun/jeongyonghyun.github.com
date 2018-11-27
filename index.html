@@ -11,71 +11,42 @@
 </head>
     
 <body>
-    <!--
-     <script>
-        function onLoad(){
-            initMap();
-        };
-        
-        var map;
-        var centerLocation = {lat: 35, lng : 139};
-        
-        function initMap(){
-            map = new google.maps.Map(document.getElementById('map'),{
-                center : centerLocation,
-                zoom : 17
-            });
-            
-            var marker = new google.maps.Marker({
-                position : centerLocation,
-                //icon : 'mylocation.png',
-                animation : google.maps.Animation.BOUNCE
-            });
-            
-            marker.setMap(map);
-        };
-    </script>-->
-    <div id = "map">
-    </div>
-</body>
-    
-<body>
     <div id = "container1">
         <video id="remoteVideo" playsinline autoplay></video>
     </div>
-        
-    <div id = "container2">
-        <video id="localVideo" autoplay muted></video>
+     
+    <div id = "map">
     </div>
     
-    <div id = "container3">
-        <mark style = "background-color: pink"> Access Point :</mark><p id = "url"> </p>
-    </div>
-    
-  
-    <div>
-	<img id="qrCode" src='' />
-
-	</div>
-  
-    <div id="container">
-        <video id="gum" playsinline autoplay muted></video>
-        <video id="recorded" playsinline></video>
-
-    </div>
-
-    <div>
-        <button id="record">Start Recording</button>
-        <button id="play" disabled>Play</button>
-        <button id="download" disabled>Download</button>
-    </div>   
-
     <div class = "loc">
         <label for ="lat"> Latitude : </label>
         <input type ="text" id="lat" name="lat">
         <label for ="long"> Latitude : </label>
         <input type ="text" id="long" name="long">
     </div>
+    
+    <div id = "container2">
+        <video id="localVideo" autoplay muted></video>
+    </div>
+    
+    <div id="container">
+        <!--<video id="gum" playsinline autoplay muted></video>-->
+        <video id="recorded" playsinline></video>
+    </div>
+    
+    <div>
+        <button id="record">Start Recording</button>
+        <button id="play" disabled>Play</button>
+        <button id="download" disabled>Download</button>
+    </div>   
+
+    <div id = "container3">
+        <mark style = "background-color: pink"> Access Point :</mark><p id = "url"> </p>
+    </div>
+    
+    <div>
+	   <img id="qrCode" src='' />
+	</div>
     
     <!-- include adapter for srcObject shim -->
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
