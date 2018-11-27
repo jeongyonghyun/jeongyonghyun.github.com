@@ -117,12 +117,28 @@ function startWebRTC(isOfferer) {
             document.getElementById("lat").value = lat;
             document.getElementById("long").value = long;
             
+            const gps = document.querySelector('#map');
+           
+            let map;
+    
+            map = new google.maps.Map(gps,{
+                center : centerLocation,
+                zoom : 17
+            });
+            
+            var marker = new google.maps.Marker({
+                position : centerLocation,
+                animation : google.maps.Animation.BOUNCE
+            });
+            
+             marker.setMap(map);
         }
 
+    
         function errorPosition(error){
             alert(error.message);
         }
-    
+        
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
      const stream = event.streams[0];
