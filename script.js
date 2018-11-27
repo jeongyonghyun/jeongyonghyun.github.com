@@ -263,7 +263,7 @@ function stopRecording() {
 }
     
 function play() {
-  video.play();
+  recordedVideo.play();
 }
     
 function download() {
