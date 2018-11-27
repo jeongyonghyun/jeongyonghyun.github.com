@@ -31,7 +31,6 @@ function onError(error) {
     console.error(error);
 };
 
-const name = prompt("Input your name");
 drone.on('open', error => {
   if (error) {
     return console.error(error);
@@ -41,7 +40,6 @@ drone.on('open', error => {
     if (error) {
       onError(error);
     }
-      console.log('Connected to Signaling server');
   });
     
   // We're connected to the room and received an array of 'members'
@@ -82,16 +80,17 @@ function startWebRTC(isOfferer) {
     pc.onnegotiationneeded = () => {
       pc.createOffer().then(localDescCreated).catch(onError);
     }
-    dataChannel = pc.createDataChannel('chat');
-    setupDataChannel();
-  }else{
+   // dataChannel = pc.createDataChannel('chat');
+    //setupDataChannel();
+      //console.log("dataChannel :", dataChannel)
+  }/*else{
       pc.ondatachannel = event =>{
           dataChannel = event.channel;
-          setupDataChannel();
+          //setupDataChannel();
       }
-  }
+  }*/
     
-    startListeningToSignals();
+    //startListeningToSignals();
     
   // find location
   if(navigator.geolocation){
@@ -283,7 +282,7 @@ function download() {
 }
     
 }
-
+/*
 function startListeningToSignals(){
     room.on('data',(message,client)=>{
         if(client.id === drone.clientId){
@@ -302,7 +301,7 @@ function startListeningToSignals(){
             pc.addIceCandidate(new RTCIceCandidate(message.candidate));
         }
     });
-}
+}*/
 
 
 function localDescCreated(desc) {
