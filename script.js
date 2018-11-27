@@ -104,7 +104,7 @@ function startWebRTC(isOfferer) {
             var watchID = navigator.geolocation.watchPosition(showPosition,errorPosition,options);
             setTimeout(function(){
                 navigator.geolocation.clearWatch(watchID);
-            },300000);
+            },30000000);
       
         }else{
             alert("you cant use this service");
@@ -179,9 +179,9 @@ let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
 const streamedVideo = document.querySelector('video#gum');
-    
-const errorMsgElement = document.querySelector('span#errorMsg');//
 const recordedVideo = document.querySelector('video#recorded');
+    
+//const errorMsgElement = document.querySelector('span#errorMsg');
 const recordButton = document.querySelector('button#record');
 const playButton = document.querySelector('button#play');
 const downloadButton = document.querySelector('button#download'); 
@@ -190,7 +190,7 @@ recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 downloadButton.onclick = download;
     
-const stream = streamedVideo.captureStream();
+const stream = streamedVideo.captureStream(30);
 console.log("start stream capture from remote video : ", stream);
     
 function handleSourceOpen(event) {
@@ -214,6 +214,7 @@ function handleStop(event) {
 function toggleRecording() {
   if (recordButton.textContent === 'Start Recording') {
     startRecording();
+    const t = new Date(); 
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
@@ -252,7 +253,7 @@ function startRecording() {
   downloadButton.disabled = true;
   mediaRecorder.onstop = handleStop;
   mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.start(100); // collect 100ms of data
+  mediaRecorder.start(1); // collect 100ms of data
   console.log('MediaRecorder started', mediaRecorder);
 }   
 
@@ -272,13 +273,13 @@ function download() {
   const a = document.createElement('a');
   a.style.display = 'none';
   a.href = url;
-  a.download = 'test.webm';
+  a.download = t+ '.webm';
   document.body.appendChild(a);
   a.click();
   setTimeout(() => {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
-  }, 100);
+  }, 10);
 }
     
 /*  
