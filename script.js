@@ -281,6 +281,7 @@ function download() {
     window.URL.revokeObjectURL(url);
   }, 100);
 }
+    
 }
 
 function startListeningToSignals(){
@@ -312,52 +313,4 @@ function localDescCreated(desc) {
   );
 }
 
-function setupDataChannel(){
-    checkDataChannelState();
-    dataChannel.onopen = checkDataChannelState;
-    dataChannel.onclose = checkDataChannelState;
-    dataChannel.onmessage = event =>
-    insertMessageToDOM(JSON.parse(event.data),false)
-}
 
-function checkDataChannelState(){
-    console.log('WebRTC channel state is : ', dataChannel.readyState);
-    if(dataChannel.readyState === 'open'){
-        insertMessageToDOM({content :'WebRTC data channel is now open'});
-    }
-}
-
-function insertMessageToDOM(options,isFromMe){
-    const template = document.querySelector('template[data-template = "message"]');
-    const nameEl = template.content.querySelector('.message__name');
-    if(options.name){
-        nameEl.innerText = options.name;
-    }
-    template.content.querySelector('.message__bubble').innerText = options.conten;
-    const clone = document.importNode(template.content,true);
-    const messageEl = clone.querySelector('.message');
-    if(isFromMe){
-        messageEl.classList.add('message--mine');
-    }else{
-        messageEl.classList.add('message--theirs');
-    }
-    
-    const messagesEl = document.querySelector('.messages');
-    messagesEl.appendChild(clone);
-    
-    messagesEl.scrollTop = messageEl.scrollHeight -messagesEl.clientHeight;
-}
-
-const form = document.querySelector('form');
-form.addEventListener('submit',()=>{
-    const input = document.querySelector('input[type="text"]');
-    const value = input.value;
-    input.value = ' ';
-        
-    const data = {
-        name,
-        content: value,
-    };
-    dataChannel.send(JSON.stringify(data));
-    insertMessageToDOM(data,true);
-});
