@@ -129,7 +129,7 @@ function startWebRTC(isOfferer) {
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
       recordButton.disabled = false;
-      gum.srcObject = stream;
+      //gum.srcObject = stream;
     }
   };
     
@@ -177,6 +177,7 @@ mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
+const remotedVideo = document.querySelector('video#remoted'); //
 const streamedVideo = document.querySelector('video#gum');
 const recordedVideo = document.querySelector('video#recorded');
     
@@ -189,7 +190,7 @@ recordButton.onclick = toggleRecording;
 playButton.onclick = play;
 downloadButton.onclick = download;
     
-const stream = streamedVideo.captureStream(30);
+const stream = remotededVideo.captureStream();
 console.log("start stream capture from remote video : ", stream);
     
 function handleSourceOpen(event) {
@@ -216,6 +217,8 @@ function toggleRecording() {
   } else {
     stopRecording();
     recordButton.textContent = 'Start Recording';
+    recordButton.style.fontSize = '14px';
+    recordButton.style.backgroundColor = 'grey';
     playButton.disabled = false;
     downloadButton.disabled = false;
   }
@@ -246,7 +249,9 @@ function startRecording() {
     }
   }
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
-  recordButton.textContent = 'Stop Recording';
+  recordButton.textContent = 'Stop';
+  recordButton.style.fontSize = '28px';
+  recordButton.style.backgroundColor = 'red';
   playButton.disabled = true;
   downloadButton.disabled = true;
   mediaRecorder.onstop = handleStop;
