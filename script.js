@@ -67,7 +67,7 @@ function sendMessage(message) {
 function startWebRTC(isOfferer) {
   console.log('Starting WebRTC in as ', isOfferer?'offerer':'waiter');
   pc = new RTCPeerConnection(configuration);
-  dataChannel = pc.createDataChannel('gps');
+  //dataChannel = pc.createDataChannel('gps');
   // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
   // message to the other peer through the signaling server
   pc.onicecandidate = event => {
@@ -81,17 +81,18 @@ function startWebRTC(isOfferer) {
     pc.onnegotiationneeded = () => {
       pc.createOffer().then(localDescCreated).catch(onError);
     }
-     //dataChannel = pc.createDataChannel('gps');
-     setupDataChannel();
+      dataChannel = pc.createDataChannel('gps');
+      setupDataChannel();
     // console.log("dataChannel :", dataChannel)
   }else{
       pc.ondatachannel = event =>{
           dataChannel = event.channel;
           setupDataChannel();
-      }
-  }
+      };
+  };
     
-    startListeningToSignals();
+ startListeningToSignals();
+
  // find location
   if(navigator.geolocation){
             console.log("geolocation is available");
@@ -453,7 +454,7 @@ function localDescCreated(desc) {
   );
 }
 
-function setupData(){
+function setupDataChannel(){
     checkDataChannelState();
     dataChannel.onopen = checkDataChannelState;
     dataChannel.onclose = checkDataChannelState;
