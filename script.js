@@ -25,6 +25,7 @@ let room;
 let pc;
 let dataChannel;
 let lat, long;
+let centerLocation;
 
 function onSuccess() {};
 function onError(error) {
@@ -80,17 +81,17 @@ function startWebRTC(isOfferer) {
     pc.onnegotiationneeded = () => {
       pc.createOffer().then(localDescCreated).catch(onError);
     }
-   // dataChannel = pc.createDataChannel('chat');
-    //setupDataChannel();
-      //console.log("dataChannel :", dataChannel)
-  }/*else{
+     dataChannel = pc.createDataChannel('gps');
+     setupDataChannel();
+     console.log("dataChannel :", dataChannel)
+  }else{
       pc.ondatachannel = event =>{
           dataChannel = event.channel;
-          //setupDataChannel();
+          setupDataChannel();
       }
-  }*/
+  }
     
-    //startListeningToSignals();
+    startListeningToSignals();
  // find location
   if(navigator.geolocation){
             console.log("geolocation is available");
@@ -111,9 +112,8 @@ function startWebRTC(isOfferer) {
         function showPosition(position){
             lat = position.coords.latitude;
             long = position.coords.longitude;
-            var centerLocation = {lat: lat, lng : long};
+            centerLocation = {lat: lat, lng : long};
             console.log("Center location : ", centerLocation);
-            printlocation(centerLocation); //added fn
             document.getElementById("lat").value = lat;
             document.getElementById("long").value = long;
             const gps = document.querySelector('#map');
@@ -121,7 +121,7 @@ function startWebRTC(isOfferer) {
     
             map = new google.maps.Map(gps,{
                 center : centerLocation,
-                zoom : 17
+                zoom : 16
             });
             
             var marker = new google.maps.Marker({
@@ -129,17 +129,15 @@ function startWebRTC(isOfferer) {
                 animation : google.maps.Animation.BOUNCE
             });
             
-             marker.setMap(map);     
+             marker.setMap(map);
         }
-    
-      
-        function  printlocation(value){
-            console.log("location :", value);
-        }
+
         function errorPosition(error){
             alert(error.message);
         }
-     ////////////////////////////////////////////////////////////////////////////////
+    
+        
+ /*    ////////////////////////////////////////////////////////////////////////////////
     'use strict';
 
     var localConnection;
@@ -261,7 +259,7 @@ function startWebRTC(isOfferer) {
       var readyState = receiveChannel.readyState;
     }    
 
-////////////////////////////////////////////////////////////////////////////////  
+////////////////////////////////////////////////////////////////////////////////  */
     
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
@@ -427,7 +425,7 @@ function download() {
 }
     
 }
-/*
+
 function startListeningToSignals(){
     room.on('data',(message,client)=>{
         if(client.id === drone.clientId){
@@ -446,8 +444,7 @@ function startListeningToSignals(){
             pc.addIceCandidate(new RTCIceCandidate(message.candidate));
         }
     });
-}*/
-
+}
 
 function localDescCreated(desc) {
   pc.setLocalDescription(
@@ -455,6 +452,34 @@ function localDescCreated(desc) {
     () => sendMessage({'sdp': pc.localDescription}),
     onError
   );
+}
+
+function setupData(){
+    checkDataChannelState();
+    dataChannel.onopen = checkDataChannelState;
+    dataChannel.onclose = checkDataChannelState;
+    dataChannel.onmessage = event =>
+    dataChannel.send(event.data) /// send data
+}
+
+function checkDataChannelState(){
+    console.log('WenbRTC channel state is : ',dataChannel.readyState);
+    if(dataChannel.readyState === 'open'){
+       console.log('WebRTC is open now');
+    }
+}
+
+function exp(data){
+    document.getElementById("dataCh").appendChild(data);
+}
+
+let lct;
+
+function sendData(val){
+    lct = 34;
+    dataChannel.send(JSON,stringify(lct));
+    exp(lct);
+    
 }
 
 

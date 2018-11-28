@@ -30,15 +30,15 @@
     <div class = "gps">
         <h4 style = "display:inline">Remote GPS → </h4>
         <label for ="lat"> Latitude : </label>
-        <input type ="text" id="receive" name="lat">
+        <input type ="text" id="lat" name="lat">
         <label for ="long"> Latitude : </label>
         <input type ="text" id="long" name="long">
     </div>
-    
+    <!--
     <div id="buttons">
       <button id="startButton">Start</button>
       <button id="closeButton">Stop</button>
-    </div>
+    </div>-->
     
     <div id = "container2">
         <video id="localVideo" autoplay muted></video>
@@ -62,6 +62,8 @@
     <div>
 	   <img id="qrCode" src='' />
 	</div>
+    
+    <p id = "dataCh"></p>
     
     <!-- include adapter for srcObject shim -->
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
