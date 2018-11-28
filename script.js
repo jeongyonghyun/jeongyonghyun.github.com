@@ -67,7 +67,7 @@ function sendMessage(message) {
 function startWebRTC(isOfferer) {
   console.log('Starting WebRTC in as ', isOfferer?'offerer':'waiter');
   pc = new RTCPeerConnection(configuration);
-
+  dataChannel = pc.createDataChannel('gps');
   // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
   // message to the other peer through the signaling server
   pc.onicecandidate = event => {
@@ -281,7 +281,7 @@ function startWebRTC(isOfferer) {
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
-
+/*
   // Listen to signaling data from Scaledrone
   room.on('data', (message, client) => {
     // Message was sent by us
@@ -304,7 +304,7 @@ function startWebRTC(isOfferer) {
       );
     }
   });
-
+*/
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 'use strict';
 
@@ -425,7 +425,6 @@ function download() {
 }
     
 }
-
 function startListeningToSignals(){
     room.on('data',(message,client)=>{
         if(client.id === drone.clientId){
