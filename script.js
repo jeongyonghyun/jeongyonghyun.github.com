@@ -81,9 +81,9 @@ function startWebRTC(isOfferer) {
     pc.onnegotiationneeded = () => {
       pc.createOffer().then(localDescCreated).catch(onError);
     }
-     dataChannel = pc.createDataChannel('gps');
+     //dataChannel = pc.createDataChannel('gps');
      setupDataChannel();
-     console.log("dataChannel :", dataChannel)
+    // console.log("dataChannel :", dataChannel)
   }else{
       pc.ondatachannel = event =>{
           dataChannel = event.channel;
