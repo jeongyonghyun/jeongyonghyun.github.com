@@ -16,13 +16,28 @@
     </div>
      
     <div id = "map">
+    
     </div>
     
-    <div class = "loc">
+    <div class = "gps">
+        <h4 style = "display:inline">Local GPS....  → </h4>
         <label for ="lat"> Latitude : </label>
         <input type ="text" id="lat" name="lat">
         <label for ="long"> Latitude : </label>
         <input type ="text" id="long" name="long">
+    </div>
+    
+    <div class = "gps">
+        <h4 style = "display:inline">Remote GPS → </h4>
+        <label for ="lat"> Latitude : </label>
+        <input type ="text" id="receive" name="lat">
+        <label for ="long"> Latitude : </label>
+        <input type ="text" id="long" name="long">
+    </div>
+    
+    <div id="buttons">
+      <button id="startButton">Start</button>
+      <button id="closeButton">Stop</button>
     </div>
     
     <div id = "container2">
