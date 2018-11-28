@@ -131,136 +131,12 @@ function startWebRTC(isOfferer) {
             });
             
              marker.setMap(map);
+            sendData(lat,long);
         }
 
         function errorPosition(error){
             alert(error.message);
         }
-    
-        
- /*    ////////////////////////////////////////////////////////////////////////////////
-    'use strict';
-
-    var localConnection;
-    var remoteConnection;
-    var sendChannel;
-    var receiveChannel;
-    var pcConstraint;
-    var dataConstraint;
-    var dataChannelReceive = document.querySelector('input#receive'); //remote GPS latitude
-    var startButton = document.querySelector('button#startButton');
-    var closeButton = document.querySelector('button#closeButton');
-
-    startButton.onclick = createConnection;
-    closeButton.onclick = closeDataChannels;
-
-    function enableStartButton() {
-      startButton.disabled = false;
-      startButton.textContent = "Now you can connect";
-    }
-    
-    function createConnection() {
-      var servers = null;
-      pcConstraint = null;
-      dataConstraint = null;
-
-      localConnection = new RTCPeerConnection(servers, pcConstraint);
-
-      sendChannel = localConnection.createDataChannel('sendDataChannel',
-        dataConstraint);
-
-      sendChannel.onopen = onSendChannelStateChange;
-      sendChannel.onclose = onSendChannelStateChange;
-
-        /// remote connction
-      remoteConnection = new RTCPeerConnection(servers, pcConstraint);
-
-      remoteConnection.ondatachannel = receiveChannelCallback;
-
-      localConnection.createOffer().then(
-        gotDescription1
-      );
-      startButton.disabled = true;
-      startButton.textContent = "connecting";
-      closeButton.disabled = false;
-      console.log("createConnection function is active");
-    }
-    
-    ////////////// this is the most important one
-    function sendData() {
-        //showPosition();
-        //var data = centerLocation; // need to change to GPS (data to centerlocation)
-     //sendChannel.send(data);
-    }
-    
-    function closeDataChannels() {
-
-      sendChannel.close();
-      receiveChannel.close();
-      localConnection.close();
-      remoteConnection.close();
-      localConnection = null;
-      remoteConnection = null;
-      startButton.disabled = false;
-      closeButton.disabled = true;
-     // dataChannelSend.value = '';
-      //dataChannelReceive.value = '';
-      enableStartButton();
-    }
-
-    function gotDescription1(desc) {
-      localConnection.setLocalDescription(desc);
-      remoteConnection.setRemoteDescription(desc);
-      remoteConnection.createAnswer().then(
-        gotDescription2
-      );
-        console.log("gotDescription1 started");
-    }
-
-    function gotDescription2(desc) {
-      remoteConnection.setLocalDescription(desc);
-      localConnection.setRemoteDescription(desc);
-      console.log("gotDescription2 started");
-    }
-
-    function getOtherPc(pc) {
-      return (pc === localConnection) ? remoteConnection : localConnection;
-    }
-
-    function getName(pc) {
-      return (pc === localConnection) ? 'localPeerConnection' : 'remotePeerConnection';
-    }
-
-    function receiveChannelCallback(event) {
-      receiveChannel = event.channel;
-      receiveChannel.onmessage = onReceiveMessageCallback;
-      receiveChannel.onopen = onReceiveChannelStateChange;
-      receiveChannel.onclose = onReceiveChannelStateChange;
-    }
-
-
-    function onReceiveMessageCallback(event) {
-      dataChannelReceive.value = event.data;
-        console.log("event.data : ",event.data);
-    }
-
-    function onSendChannelStateChange() {
-      var readyState = sendChannel.readyState;
-      if (readyState === 'open') {
-          console.log("sendchannel is ready");
-        //dataChannelSend.focus();
-        closeButton.disabled = false;
-      } else {
-        closeButton.disabled = true;
-        console.log("sendchannel is closed");
-      }
-    }
-
-    function onReceiveChannelStateChange() {
-      var readyState = receiveChannel.readyState;
-    }    
-
-////////////////////////////////////////////////////////////////////////////////  */
     
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
@@ -469,17 +345,13 @@ function checkDataChannelState(){
     }
 }
 
-function exp(data){
-    document.getElementById("dataCh").appendChild(data);
-}
-
-let lct;
-
-function sendData(val){
-    lct = 34;
-    dataChannel.send(JSON,stringify(lct));
-    exp(lct);
-    
+function sendData(lat,lng){
+    //tmp_lat = lat;
+    //tmp_lng = lng;
+    console.log(lat,lng);
+    document.getElementById("dataCh").innerHTML = [lat,lng];
+    dataChannel.send(JSON,stringify(lat));
+   
 }
 
 
