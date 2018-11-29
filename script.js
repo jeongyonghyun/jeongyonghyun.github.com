@@ -24,8 +24,6 @@ const configuration = {
 let room;
 let pc;
 let dataChannel;
-let lat, long;
-let centerLocation;
 
 function onSuccess() {};
 function onError(error) {
@@ -94,7 +92,13 @@ function startWebRTC(isOfferer) {
  startListeningToSignals();
 
  // find location
-  if(navigator.geolocation){
+    let lat, long;
+    let centerLocation;
+    const gpsButton = document.querySelector('button#gpsLocation'); ;
+    
+    gpsButton.onclick = gpsActive;
+    
+    if(navigator.geolocation){
             console.log("geolocation is available");
             var options = {
                 enableHighAccuracy : true,
@@ -131,12 +135,26 @@ function startWebRTC(isOfferer) {
             });
             
              marker.setMap(map);
-            sendData(lat,long);
+             dataChannel.send(JSON,stringify(centerLocation)); 
+            //sendData(lat,long);
+            /*
+            if(gpsButton.textContent === 'Gps On'){
+                console.log("gps is not yet activated");
+            }else if(gpsButton.textContent === 'Gps Running'){
+                console.log("gps is activated");
+                dataChannel.send(JSON,stringify(centerLocation));    
+            }*/
         }
 
         function errorPosition(error){
             alert(error.message);
         }
+    
+    function gpsActive() {
+        gpsButton.style.backgroundColor = 'red';
+        gpsButton.textContent = "Gps Running";
+        console.log("gps is now running");
+    }
     
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
@@ -158,31 +176,6 @@ function startWebRTC(isOfferer) {
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
 
-/*
-  // Listen to signaling data from Scaledrone
-  room.on('data', (message, client) => {
-    // Message was sent by us
-    if (client.id === drone.clientId) {
-      return;
-    }
-
-    if (message.sdp) {
-      // This is called after receiving an offer or answer from another peer
-      pc.setRemoteDescription(new RTCSessionDescription(message.sdp), () => {
-        // When receiving an offer lets answer it
-        if (pc.remoteDescription.type === 'offer') {
-          pc.createAnswer().then(localDescCreated).catch(onError);
-        }
-      }, onError);
-    } else if (message.candidate) {
-      // Add the new ICE candidate to our connections remote description
-      pc.addIceCandidate(
-        new RTCIceCandidate(message.candidate), onSuccess, onError
-      );
-    }
-  });
-*/
-//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%//
 'use strict';
 
 /* globals MediaRecorder */
@@ -335,7 +328,7 @@ function setupDataChannel(){
     dataChannel.onopen = checkDataChannelState;
     dataChannel.onclose = checkDataChannelState;
     dataChannel.onmessage = event =>
-    dataChannel.send(event.data) /// send data
+    document.getElementById("dataCh").innerHTML = event.data ; /// send data
 }
 
 function checkDataChannelState(){
@@ -350,8 +343,6 @@ function sendData(lat,lng){
     //tmp_lng = lng;
     console.log(lat,lng);
     document.getElementById("dataCh").innerHTML = [lat,lng];
-    dataChannel.send(JSON,stringify(lat));
-   
 }
 
 
