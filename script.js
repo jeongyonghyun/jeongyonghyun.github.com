@@ -330,12 +330,12 @@ function setupDataChannel(){
         var longi = gpsData.lng;
         console.log('remote peer latitude :',latit);
         console.log('remote peer longitude :',longi);
-        document.getElementById("input#remote_lat").value = latit;
-        document.getElementById("input#remote_long").value = longi;
-        
-        const gps = document.querySelector('#map');
+        document.getElementById("remote_lat").value = latit;
+        document.getElementById("remote_long").value = longi;
+           const gps = document.querySelector('#map');
             let map;
-            remoteLocation = {lat:latit, lng:longi};
+            remoteLocation = {lat : latit, lng : longi};
+            console.log("remoteLocation :", remoteLocation);
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
                 zoom : 16
@@ -347,9 +347,7 @@ function setupDataChannel(){
             });
             
              marker.setMap(map);
-        
     }
- 
 }
 
 function checkDataChannelState(){
