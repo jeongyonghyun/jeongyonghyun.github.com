@@ -322,7 +322,7 @@ function setupDataChannel(){
     dataChannel.onclose = checkDataChannelState;
     dataChannel.onmessage = (event) =>{
         console.log('got JSON data :',event.data);
-        var gpsData = event.data;
+        var gpsData = JSON.parse(event.data);
         var latit = gpsData.lat;
         var longi = gpsData.lng;
         console.log('remote peer latitude :',latit);
