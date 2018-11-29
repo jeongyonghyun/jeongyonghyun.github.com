@@ -135,20 +135,9 @@ function startWebRTC(isOfferer) {
             });
             
              marker.setMap(map);
-            /*
-            var obj = {
-                 key1 : 'yong1',
-                 key2 : 'yong2'
-             };*/
-            dataChannel.send(JSON.stringify(centerLocation)); 
-            //sendData(lat,long);
-            /*
-            if(gpsButton.textContent === 'Gps On'){
-                console.log("gps is not yet activated");
-            }else if(gpsButton.textContent === 'Gps Running'){
-                console.log("gps is activated");
-                dataChannel.send(JSON,stringify(centerLocation));    
-            }*/
+            
+            //dataChannel.send(JSON.stringify(centerLocation)); 
+            dataChannel.send(centerLocation); 
         }
 
         function errorPosition(error){
@@ -334,6 +323,10 @@ function setupDataChannel(){
     dataChannel.onclose = checkDataChannelState;
     dataChannel.onmessage = (event) =>{
         console.log('got JSON data :',event.data);
+        var latit = event.data.lat;
+        var longi = event.data.lng;
+        console.log('remote peer latitude :',latit);
+        console.log('remote peer longitude :',longi);
         document.getElementById("dataCh").innerHTML = event.data ; /// send data
     }
  
@@ -345,11 +338,4 @@ function checkDataChannelState(){
        console.log('WebRTC is open now');
     }
 }
-/*
-var obj = {
-                 key1 : 'yong1',
-                 key2 : 'yong2'
-             };
-dataChannel.send(JSON,stringify(obj)); 
-*/
 
