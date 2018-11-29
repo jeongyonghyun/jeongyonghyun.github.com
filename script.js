@@ -140,7 +140,7 @@ function startWebRTC(isOfferer) {
                  key1 : 'yong1',
                  key2 : 'yong2'
              };
-             dataChannel.send(JSON,stringify(obj)); 
+             dataChannel.send(JSON.parse(JSON,stringify(obj))); 
             //sendData(lat,long);
             /*
             if(gpsButton.textContent === 'Gps On'){
@@ -332,8 +332,11 @@ function setupDataChannel(){
     checkDataChannelState();
     dataChannel.onopen = checkDataChannelState;
     dataChannel.onclose = checkDataChannelState;
-    dataChannel.onmessage = event =>
-    document.getElementById("dataCh").innerHTML = event.data ; /// send data
+    dataChannel.onmessage = (event) =>{
+        console.log('got JSON data :',event.data);
+        document.getElementById("dataCh").innerHTML = event.data ; /// send data
+    }
+ 
 }
 
 function checkDataChannelState(){
