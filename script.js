@@ -95,9 +95,6 @@ function startWebRTC(isOfferer) {
     let lat, long;
     let centerLocation;
     let remoteLocation;
-    const gpsButton = document.querySelector('button#gpsLocation'); ;
-    
-    gpsButton.onclick = gpsActive;
     
     if(navigator.geolocation){
             console.log("geolocation is available");
@@ -145,12 +142,6 @@ function startWebRTC(isOfferer) {
         function errorPosition(error){
             alert(error.message);
         }
-    
-    function gpsActive() {
-        gpsButton.style.backgroundColor = 'red';
-        gpsButton.textContent = "Gps Running";
-        console.log("gps is now running");
-    }
     
   // When a remote stream arrives display it in the #remoteVideo element
   pc.ontrack = event => {
@@ -338,7 +329,7 @@ function setupDataChannel(){
             console.log("remoteLocation :", remoteLocation);
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
-                zoom : 16
+                zoom : 14
             });
             
             var marker = new google.maps.Marker({
