@@ -136,8 +136,7 @@ function startWebRTC(isOfferer) {
             
              marker.setMap(map);
             
-            //dataChannel.send(JSON.stringify(centerLocation)); 
-            dataChannel.send(centerLocation); 
+            dataChannel.send(JSON.parse(JSON.stringify(centerLocation)));  
         }
 
         function errorPosition(error){
