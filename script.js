@@ -135,11 +135,12 @@ function startWebRTC(isOfferer) {
             });
             
              marker.setMap(map);
+            /*
             var obj = {
                  key1 : 'yong1',
                  key2 : 'yong2'
-             };
-            dataChannel.send(JSON.stringify(obj)); 
+             };*/
+            dataChannel.send(JSON.stringify(centerLocation)); 
             //sendData(lat,long);
             /*
             if(gpsButton.textContent === 'Gps On'){
@@ -344,18 +345,11 @@ function checkDataChannelState(){
        console.log('WebRTC is open now');
     }
 }
-
+/*
 var obj = {
                  key1 : 'yong1',
                  key2 : 'yong2'
              };
 dataChannel.send(JSON,stringify(obj)); 
-/*
-function sendData(lat,lng){
-    //tmp_lat = lat;
-    //tmp_lng = lng;
-    console.log(lat,lng);
-    document.getElementById("dataCh").innerHTML = [lat,lng];
-}*/
-
+*/
 
