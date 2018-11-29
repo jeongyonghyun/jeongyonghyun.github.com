@@ -120,10 +120,10 @@ function startWebRTC(isOfferer) {
             long = position.coords.longitude;
             centerLocation = {lat: lat, lng : long};
             console.log("Center location : ", centerLocation);
-           
-            /*
+            
             document.getElementById("lat").value = lat;
             document.getElementById("long").value = long;
+            /*
             const gps = document.querySelector('#map');
             let map;
     
@@ -330,8 +330,8 @@ function setupDataChannel(){
         var longi = gpsData.lng;
         console.log('remote peer latitude :',latit);
         console.log('remote peer longitude :',longi);
-        document.getElementById("input#remote_lat").innerHTML = latit;
-        document.getElementById("input#remote_long").innerHTML = longi;
+        document.getElementById("input#remote_lat").value = latit;
+        document.getElementById("input#remote_long").value = longi;
         
         const gps = document.querySelector('#map');
             let map;
@@ -342,7 +342,7 @@ function setupDataChannel(){
             });
             
             var marker = new google.maps.Marker({
-                position : centerLocation,
+                position : remoteLocation,
                 animation : google.maps.Animation.BOUNCE
             });
             
