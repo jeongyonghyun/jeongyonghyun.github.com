@@ -94,6 +94,7 @@ function startWebRTC(isOfferer) {
  // find location
     let lat, long;
     let centerLocation;
+    let remoteLocation;
     const gpsButton = document.querySelector('button#gpsLocation'); ;
     
     gpsButton.onclick = gpsActive;
@@ -119,6 +120,8 @@ function startWebRTC(isOfferer) {
             long = position.coords.longitude;
             centerLocation = {lat: lat, lng : long};
             console.log("Center location : ", centerLocation);
+           
+            /*
             document.getElementById("lat").value = lat;
             document.getElementById("long").value = long;
             const gps = document.querySelector('#map');
@@ -134,7 +137,7 @@ function startWebRTC(isOfferer) {
                 animation : google.maps.Animation.BOUNCE
             });
             
-             marker.setMap(map);
+             marker.setMap(map);*/
             
             dataChannel.send(JSON.stringify(centerLocation));  
         }
@@ -327,7 +330,24 @@ function setupDataChannel(){
         var longi = gpsData.lng;
         console.log('remote peer latitude :',latit);
         console.log('remote peer longitude :',longi);
-        document.getElementById("dataCh").innerHTML = event.data ; /// send data
+        document.getElementById("input#remote_lat").innerHTML = latit;
+        document.getElementById("input#remote_long").innerHTML = longi;
+        
+        const gps = document.querySelector('#map');
+            let map;
+            remoteLocation = {lat:latit, lng:longi};
+            map = new google.maps.Map(gps,{
+                center : remoteLocation,
+                zoom : 16
+            });
+            
+            var marker = new google.maps.Marker({
+                position : centerLocation,
+                animation : google.maps.Animation.BOUNCE
+            });
+            
+             marker.setMap(map);
+        
     }
  
 }
