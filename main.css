@@ -1,112 +1,68 @@
+html,body{
+    margin : 0;
+    padding : 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+video{
+    object-fit: fill;
+}
+#videoContainer{
+    position : relative;
+    width : 69%;
+    max-height : 500px;
+    height : auto;
+}
+ #remoteVideo{
+    width : 100%;
+    height : 500px;
+    margin : 0;
+    border-radius : 3px;
+    background-color : antiquewhite;
+}
+#localVideo{
+    position : absolute;
+    margin : 0;
+    top : 450px;
+    left : 5px;
+    width : 10%;
+    max-height : 50px;
+    height : auto;
+    border-radius : 2px;
+    background-color : lightgray;
+}
+#recordVideo{
+    width : 20%;
+    max-height : 100px;
+    height : auto;
+    margin : 0;
+    border-radius : 2px;
+    background-color : black;
+}
 
-    html,body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-      video{
-          object-fit: fill;
-      }
-      
-      #container1{
-        position : relative;
-        width : 68%;
-        left : 5px;
-      }
-      #container1 : before{
-          content : "";
-          display : block;
-          padding-top : 50%;
-      }
-    #remoteVideo { 
-        top : 0;
-        left : 5px;
-        width : 100%;
-        height : 100%;
-        border-radius : 3px;
-        border : 1px solid;
-        }
-      
-    #container2{
-        position : relative;
-        width : 10%; 
-        left:5px;
-      }
-      #container2 : before{
-          content : "";
-          display : block;
-          padding-top : 50%; 
-      }
-      #localVideo {
-        width : 100%;
-        height : 100%;
-        margin-top : 10px;
-        border-radius : 3px;
-        border : 1px solid;
-        }
-      
-        button {
-          margin: 0 3px 10px 0;
-          padding-left: 2px;
-          padding-right: 2px;
-          width: 99px;
-        }
-
-        button:last-of-type {
-          margin: 0;
-        }
-        
-        p.borderBelow {
-          margin: 0 0 20px 0;
-          padding: 0 0 20px 0;
-        }
-      
-      video {
-          vertical-align: top;
-          --width: 25vw;
-          width: var(--width);
-          height: calc(var(--width) * 0.5625);
-          border : 2px solid;
-        }
-
-        video:last-of-type {
-          margin: 0 0 20px 0;
-        }
-
-        video#gumVideo {
-          margin: 0 20px 20px 0;
-        }
-
-      #container3{
-          position : relative;
-          left :5px
-      }
-    #url {
-      position : absolute;
-      width : 20%;
-      border-bottom: 1px solid;
-      top: 5px;
-      font-size: 16px;
-      color: rgba(0, 0, 0, 0.5);
-     }
-      
-      #map{
-          position : absolute;
-          width:30%;
-          height:60%;
-          left:70%;
-        }
-      #location{
-          background-color: lightcyan;
-          position : absolute;
-          width:30%;
-          height:10%;
-          left:70%;
-      }
-      .loc{
-          width : 40%
-          background-color: grey;
-      }
-      #lat, #long {
-          border : 2px solid black;
-      }
+#mapContainer{
+    position : fixed;
+    top : 0;
+    right : 0;
+    padding : 5px;
+    width : 30%;
+    height : 100%;
+    max-height : 900px;
+    background-color : lightgoldenrodyellow;
+}
+#map{
+    width : 100%;
+    height : auto;
+}
+input{
+    width :20%;
+}
+#url{
+    margin : 2px 0;
+    border : 1px solid black;
+    background-color: black;
+    color : white;
+}
+#qrCode{
+    width : 170px;
+    float : right;
+}
