@@ -11,51 +11,35 @@
 </head>
     
 <body>
-    <div id = "container1">
-        <video id="remoteVideo" playsinline autoplay></video>
+     <div id = "videoContainer"> 
+        <video id = "remoteVideo" playsinline autoplay></video>
+        <video id = "localVideo" autoplay muted></video>
+        <video id = "recordVideo" playsinline></video>
+        <div>
+            <button type="button">Start Recording</button>
+            <button type="button" disabled>Play</button>
+            <button type="button" disabled>Download</button>
+        </div>
+     </div>
+        
+     <div id = "mapContainer">
+        <div id = "map"></div>
+        <p style="display:inline">Local GPS　→</p>
+        <label for ="lat"> Lat : </label>
+        <input type = "text" id="lat" name="lat">
+        <label for ="long"> Long : </label>
+        <input type = "text" id="long" name="long">
+        <br>
+        <p style="display:inline">Remote GPS→</p>
+        <label for ="remote_lat"> Lat : </label>
+        <input type = "text" id="remote_lat" name="lat">
+        <label for ="remote_long"> Long : </label>
+        <input type = "text" id="remote_long" name="long">
+        <br>
+        <mark style="background-color: pink">Access point :</mark>
+        <p id="url"></p>
+        <img id="qrCode" src='' />
     </div>
-     
-    <div id = "map">
-    
-    </div>
-    
-    <div class = "gps">
-        <h4 style = "display:inline">Local GPS....  → </h4>
-        <label for ="lat"> Latitude : </label>
-        <input type ="text" id="lat" name="lat">
-        <label for ="long"> Latitude : </label>
-        <input type ="text" id="long" name="long">
-    </div>
-    
-    <div class = "gps">
-        <h4 style = "display:inline">Remote GPS → </h4>
-        <label for ="remote_lat"> Latitude : </label>
-        <input type ="text" id="remote_lat" name="lat">
-        <label for ="remote_long"> Latitude : </label>
-        <input type ="text" id="remote_long" name="long">
-    </div>
-    
-    <div id = "container2">
-        <video id="localVideo" autoplay muted></video>
-    </div>
-    
-    <div id="container">
-        <video id="recorded" playsinline></video>
-    </div>
-    
-    <div>
-        <button id="record">Start Recording</button>
-        <button id="play" disabled>Play</button>
-        <button id="download" disabled>Download</button>
-    </div>   
-
-    <div id = "container3">
-        <mark style = "background-color: pink"> Access Point :</mark><p id = "url"> </p>
-    </div>
-    
-    <div>
-	   <img id="qrCode" src='' />
-	</div>
     
     <!-- include adapter for srcObject shim -->
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
