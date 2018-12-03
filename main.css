@@ -17,7 +17,6 @@ video{
     height : 500px;
     margin : 0;
     border-radius : 3px;
-    background-color : antiquewhite;
 }
 #localVideo{
     position : absolute;
@@ -28,7 +27,6 @@ video{
     max-height : 50px;
     height : auto;
     border-radius : 2px;
-    background-color : lightgray;
 }
 #recordVideo{
     width : 20%;
@@ -36,7 +34,6 @@ video{
     height : auto;
     margin : 0;
     border-radius : 2px;
-    background-color : black;
 }
 
 #mapContainer{
@@ -47,7 +44,6 @@ video{
     width : 30%;
     height : 100%;
     max-height : 900px;
-    background-color : lightgoldenrodyellow;
 }
 #map{
     width : 100%;
