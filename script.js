@@ -171,7 +171,7 @@ mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
-const remotedVideo = document.querySelector('video#localVideo'); //
+const remotedVideo = document.querySelector('video#localVideo');
 const recordedVideo = document.querySelector('video#recorded');
 const recordButton = document.querySelector('button#record');
 const playButton = document.querySelector('button#play');
