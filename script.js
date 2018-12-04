@@ -171,7 +171,7 @@ mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
 let mediaRecorder;
 let recordedBlobs;
 let sourceBuffer;
-const localVideo = document.querySelector('video#localVideo'); //
+const remoteVideo = document.querySelector('video#remoteVideo'); //
 //const streamedVideo = document.querySelector('video#gum');
 const recordedVideo = document.querySelector('video#recorded');
 const recordButton = document.querySelector('button#record');
@@ -183,7 +183,7 @@ playButton.onclick = play;
 downloadButton.onclick = download;
     
 const stream = localVideo.captureStream();
-console.log("start stream capture from local video : ", stream);
+console.log("start stream capture from remote video : ", stream);
     
 function handleSourceOpen(event) {
   console.log('MediaSource opened');
