@@ -46,8 +46,12 @@ video{
     max-height : 900px;
 }
 #map{
-    width : 100%;
+    position : absolute;
+    width:30%;
+    height:60%;
+    left:70%;
     height : auto;
+    background-color: yellow; 
 }
 input{
     width :20%;
