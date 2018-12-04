@@ -46,12 +46,9 @@ video{
     max-height : 900px;
 }
 #map{
-    position : absolute;
-    width:30%;
-    height:60%;
-    left:70%;
-    height : auto;
-    background-color: yellow; 
+    width : 30%;
+    height : 60%;
+    right : 0;
 }
 input{
     width :20%;
@@ -63,6 +60,5 @@ input{
     color : white;
 }
 #qrCode{
-    width : 170px;
     float : right;
 }

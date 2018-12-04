@@ -149,7 +149,6 @@ function startWebRTC(isOfferer) {
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
       recordButton.disabled = false;
-      //gum.srcObject = stream;
     }
   };
     
@@ -175,8 +174,6 @@ let sourceBuffer;
 const localVideo = document.querySelector('video#localVideo'); //
 //const streamedVideo = document.querySelector('video#gum');
 const recordedVideo = document.querySelector('video#recorded');
-    
-//const errorMsgElement = document.querySelector('span#errorMsg');
 const recordButton = document.querySelector('button#record');
 const playButton = document.querySelector('button#play');
 const downloadButton = document.querySelector('button#download'); 
