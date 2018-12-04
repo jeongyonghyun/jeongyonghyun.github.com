@@ -22,7 +22,7 @@ video{
 #localVideo{
     position : absolute;
     margin : 0;
-    top : 450px;
+    top : 500px;
     left : 5px;
     width : 10%;
     max-height : 50px;
@@ -52,7 +52,7 @@ video{
     right : 0;
 }
 input{
-    width :27%;
+    width :25%;
 }
 #url{
     margin : 2px 0;
