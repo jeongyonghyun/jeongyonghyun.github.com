@@ -104,9 +104,10 @@ function startWebRTC(isOfferer) {
                 maximumAge : 0
             };
             var watchID = navigator.geolocation.watchPosition(showPosition,errorPosition,options);
+            /*
             setTimeout(function(){
                 navigator.geolocation.clearWatch(watchID);
-            },30000000);
+            },30000000);*/
       
         }else{
             alert("you cant use this service");
@@ -323,7 +324,7 @@ function setupDataChannel(){
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
         document.getElementById("remote_long").value = longi;
-        //showMap();
+        showMap();
         /*
            const gps = document.querySelector('#map');
             let map;
@@ -342,7 +343,7 @@ function setupDataChannel(){
              marker.setMap(map);*/
     }
 }
-/*
+
 function showMap(){
 
            const gps = document.querySelector('#map');
@@ -360,7 +361,7 @@ function showMap(){
             });
             
              marker.setMap(map);
-}*/
+}
 
 function checkDataChannelState(){
     console.log('WenbRTC channel state is : ',dataChannel.readyState);
