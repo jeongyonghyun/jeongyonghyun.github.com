@@ -342,7 +342,7 @@ function setupDataChannel(){
              marker.setMap(map);*/
     }
 }
-
+/*
 function showMap(){
 
            const gps = document.querySelector('#map');
@@ -360,7 +360,7 @@ function showMap(){
             });
             
              marker.setMap(map);
-}
+}*/
 
 function checkDataChannelState(){
     console.log('WenbRTC channel state is : ',dataChannel.readyState);
