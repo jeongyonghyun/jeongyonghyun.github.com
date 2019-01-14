@@ -319,6 +319,8 @@ function setupDataChannel(){
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
         document.getElementById("remote_long").value = longi;
+
+        getGpsData(latit,longi);
         /*
            const gps = document.querySelector('#map');
             let map;
@@ -336,6 +338,10 @@ function setupDataChannel(){
             
              marker.setMap(map);*/
     }
+}
+
+function getGpsData(a,b){
+  return a,b;
 }
 
 function checkDataChannelState(){

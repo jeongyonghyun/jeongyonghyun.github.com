@@ -14,7 +14,9 @@
       var gps = document.querySelector('#map');
       let map;
       //remoteLocation = {lat : latit, lng : longi};
-      remoteLocation = {lat : 30, lng : 140};
+      getGpsData(lat,long);
+      
+      remoteLocation = {lat : lat, lng : long};
       console.log("remoteLocation :", remoteLocation);
 
       map = new google.maps.Map(gps,{
