@@ -319,6 +319,7 @@ function setupDataChannel(){
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
         document.getElementById("remote_long").value = longi;
+        /*
            const gps = document.querySelector('#map');
             let map;
             remoteLocation = {lat : latit, lng : longi};
@@ -333,7 +334,7 @@ function setupDataChannel(){
                 animation : google.maps.Animation.BOUNCE
             });
             
-             marker.setMap(map);
+             marker.setMap(map);*/
     }
 }
 
