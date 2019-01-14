@@ -323,7 +323,7 @@ function setupDataChannel(){
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
         document.getElementById("remote_long").value = longi;
-        showMap();
+        //showMap();
         /*
            const gps = document.querySelector('#map');
             let map;
