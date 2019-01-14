@@ -9,20 +9,27 @@
   <link rel="stylesheet" href="main.css">
   <title> Camera Image </title>
   <script>
-    const gps = document.querySelector('#map');
-    let map;
-    remoteLocation = {lat : latit, lng : longi};
-    console.log("remoteLocation :", remoteLocation);
-    map = new google.maps.Map(gps,{
-          center : remoteLocation,
-          zoom : 14
+    $(document).ready(function(){
+
+      var gps = document.querySelector('#map');
+      let map;
+      //remoteLocation = {lat : latit, lng : longi};
+      remoteLocation = {lat : 30, lng : 140};
+      console.log("remoteLocation :", remoteLocation);
+
+      map = new google.maps.Map(gps,{
+            center : remoteLocation,
+            zoom : 14
+      });
+        
+      var marker = new google.maps.Marker({
+          position : remoteLocation,
+          animation : google.maps.Animation.BOUNCE
+      });
+
+      marker.setMap(map);
+
     });
-      
-    var marker = new google.maps.Marker({
-        position : remoteLocation,
-        animation : google.maps.Animation.BOUNCE
-    });
-    marker.setMap(map);
   </script>
 </head>
     
