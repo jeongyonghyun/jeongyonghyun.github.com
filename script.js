@@ -104,10 +104,9 @@ function startWebRTC(isOfferer) {
                 maximumAge : 0
             };
             var watchID = navigator.geolocation.watchPosition(showPosition,errorPosition,options);
-            /*
             setTimeout(function(){
                 navigator.geolocation.clearWatch(watchID);
-            },30000000);*/
+            },30000000);
       
         }else{
             alert("you cant use this service");
@@ -307,7 +306,6 @@ function localDescCreated(desc) {
   );
 }
 
-var latit, longi;
 function setupDataChannel(){
     checkDataChannelState();
     dataChannel.onopen = checkDataChannelState;
@@ -315,37 +313,12 @@ function setupDataChannel(){
     dataChannel.onmessage = (event) =>{
         console.log('got JSON data :',event.data);
         var gpsData = JSON.parse(event.data);
-        //var latit = gpsData.lat;
-        //var longi = gpsData.lng;
-
-        latit = gpsData.lat;
-        longi = gpsData.lng;
+        var latit = gpsData.lat;
+        var longi = gpsData.lng;
         console.log('remote peer latitude :',latit);
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
         document.getElementById("remote_long").value = longi;
-        showMap();
-        /*
-           const gps = document.querySelector('#map');
-            let map;
-            remoteLocation = {lat : latit, lng : longi};
-            console.log("remoteLocation :", remoteLocation);
-            map = new google.maps.Map(gps,{
-                center : remoteLocation,
-                zoom : 14
-            });
-            
-            var marker = new google.maps.Marker({
-                position : remoteLocation,
-                animation : google.maps.Animation.BOUNCE
-            });
-            
-             marker.setMap(map);*/
-    }
-}
-
-function showMap(){
-
            const gps = document.querySelector('#map');
             let map;
             remoteLocation = {lat : latit, lng : longi};
@@ -361,6 +334,7 @@ function showMap(){
             });
             
              marker.setMap(map);
+    }
 }
 
 function checkDataChannelState(){
