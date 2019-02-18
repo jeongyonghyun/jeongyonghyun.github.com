@@ -3,9 +3,10 @@ html,body{
     padding : 0;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
+/*
 video{
     object-fit: fill;
-}
+}*/
 #videoContainer{
     position : relative;
     width : 69%;
