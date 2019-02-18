@@ -326,7 +326,7 @@ function setupDataChannel(){
             console.log("remoteLocation :", remoteLocation);
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
-                zoom : 12
+                zoom : 16
             });
             
             var marker = new google.maps.Marker({
