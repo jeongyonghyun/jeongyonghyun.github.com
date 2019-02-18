@@ -104,10 +104,11 @@ function startWebRTC(isOfferer) {
                 maximumAge : 0
             };
             var watchID = navigator.geolocation.watchPosition(showPosition,errorPosition,options);
+           /*
             setTimeout(function(){
                 navigator.geolocation.clearWatch(watchID);
             },30000000);
-      
+            */
         }else{
             alert("you cant use this service");
         }
