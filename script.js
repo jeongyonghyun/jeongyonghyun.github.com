@@ -3,10 +3,8 @@ if (!location.hash) {
   location.hash = Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 const roomHash = location.hash.substring(1);
-const target = document.getElementById("url");
 const roomUrl = "https://jeongyonghyun.github.io/#" + roomHash;
 const newUrl = encodeURIComponent(roomUrl);
-target.innerHTML = roomUrl;
 console.log(roomUrl);
 
 googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
@@ -65,7 +63,6 @@ function sendMessage(message) {
 function startWebRTC(isOfferer) {
   console.log('Starting WebRTC in as ', isOfferer?'offerer':'waiter');
   pc = new RTCPeerConnection(configuration);
-  //dataChannel = pc.createDataChannel('gps');
   // 'onicecandidate' notifies us whenever an ICE agent needs to deliver a
   // message to the other peer through the signaling server
   pc.onicecandidate = event => {
@@ -121,22 +118,6 @@ function startWebRTC(isOfferer) {
             
             document.getElementById("lat").value = lat;
             document.getElementById("long").value = long;
-            /*
-            const gps = document.querySelector('#map');
-            let map;
-    
-            map = new google.maps.Map(gps,{
-                center : centerLocation,
-                zoom : 16
-            });
-            
-            var marker = new google.maps.Marker({
-                position : centerLocation,
-                animation : google.maps.Animation.BOUNCE
-            });
-            
-             marker.setMap(map);*/
-            
             dataChannel.send(JSON.stringify(centerLocation));  
         }
 
@@ -149,7 +130,6 @@ function startWebRTC(isOfferer) {
      const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
       remoteVideo.srcObject = stream;
-      recordButton.disabled = false;
     }
   };
     
@@ -167,118 +147,28 @@ function startWebRTC(isOfferer) {
 
 /* globals MediaRecorder */
 
-const mediaSource = new MediaSource();
-mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
-let mediaRecorder;
-let recordedBlobs;
-let sourceBuffer;
-const locVideo = document.querySelector('video#localVideo');
-const recordedVideo = document.querySelector('video#recordVideo');
-const recordButton = document.querySelector('button#record');
-const playButton = document.querySelector('button#play');
-const downloadButton = document.querySelector('button#download'); 
-    
-recordButton.onclick = toggleRecording;
-playButton.onclick = play;
-downloadButton.onclick = download;
-    
-var stream = locVideo.captureStream();
-console.log("start stream capture from local video : ", stream);
-    
-function handleSourceOpen(event) {
-  console.log('MediaSource opened');
-  sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
-  console.log('Source buffer: ', sourceBuffer);
-}
+    const mediaSource = new MediaSource();
+    mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
+    const locVideo = document.querySelector('video#localVideo');
+    const recordedVideo = document.querySelector('video#recordVideo');
 
-function handleDataAvailable(event) {
-  if (event.data && event.data.size > 0) {
-    recordedBlobs.push(event.data);
-  }
-}
+    var stream = locVideo.captureStream();
+    console.log("start stream capture from local video : ", stream);
     
-function handleStop(event) {
-  console.log('Recorder stopped: ', event);
-  const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
-  recordedVideo.src = window.URL.createObjectURL(superBuffer);
-}
-    
-function toggleRecording() {
-  if (recordButton.textContent === 'Start Recording') {
-    startRecording(); 
-  } else {
-    stopRecording();
-    recordButton.textContent = 'Start Recording';
-    recordButton.style.fontSize = '14px';
-    recordButton.style.backgroundColor = 'grey';
-    playButton.disabled = false;
-    downloadButton.disabled = false;
-  }
-}    
-    
-function startRecording() {
-  let options = {mimeType: 'video/webm;codecs=vp9'};
-  recordedBlobs = [];
-  try {
-    mediaRecorder = new MediaRecorder(stream, options);
-  } catch (e0) {
-    console.log('Unable to create MediaRecorder with options Object: ', e0);
-    try {
-      options = {mimeType: 'video/webm,codecs=vp9'};
-      mediaRecorder = new MediaRecorder(stream, options);
-    } catch (e1) {
-      console.log('Unable to create MediaRecorder with options Object: ', e1);
-      try {
-        options = 'video/vp8'; // Chrome 47
-        mediaRecorder = new MediaRecorder(stream, options);
-      } catch (e2) {
-        alert('MediaRecorder is not supported by this browser.\n\n' +
-          'Try Firefox 29 or later, or Chrome 47 or later, ' +
-          'with Enable experimental Web Platform features enabled from chrome://flags.');
-        console.error('Exception while creating MediaRecorder:', e2);
-        return;
+    function handleSourceOpen(event) {
+      console.log('MediaSource opened');
+      sourceBuffer = mediaSource.addSourceBuffer('video/webm; codecs="vp8"');
+      console.log('Source buffer: ', sourceBuffer);
+    }
+
+    function handleDataAvailable(event) {
+      if (event.data && event.data.size > 0) {
+        recordedBlobs.push(event.data);
       }
     }
-  }
-  console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
-  recordButton.textContent = 'Stop';
-  recordButton.style.fontSize = '28px';
-  recordButton.style.backgroundColor = 'red';
-  playButton.disabled = true;
-  downloadButton.disabled = true;
-  mediaRecorder.onstop = handleStop;
-  mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.start(100); // collect 100ms of data
-  console.log('MediaRecorder started', mediaRecorder);
-}   
 
-function stopRecording() {
-  mediaRecorder.stop();
-  console.log('Recorded Blobs: ', recordedBlobs);
-  recordedVideo.controls = true;
 }
-    
-function play() {
-  recordedVideo.play();
-}
-    
-function download() {
-  const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.style.display = 'none';
-  a.href = url;
-  const t = new Date();
-  a.download = t+ '.webm';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  }, 100);
-}
-    
-}
+
 function startListeningToSignals(){
     room.on('data',(message,client)=>{
         if(client.id === drone.clientId){
@@ -344,4 +234,3 @@ function checkDataChannelState(){
        console.log('WebRTC is open now');
     }
 }
-

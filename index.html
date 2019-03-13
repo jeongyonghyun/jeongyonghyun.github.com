@@ -1,50 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name = "viewport" id = "viewport" content = "width=device-width, height=device-height,initial-scale=1">
-  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
-  <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="main.css">
-  <title> Camera Image </title>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "viewport" id = "viewport" content = "width=device-width, height=device-height,initial-scale=1">
+        <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+        <script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAGOm5s5QQ2-qFDoPuqkSKd-ONmPo8J0xM"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="main.css">
+        <title> WEB HMI </title>
+    </head>
     
-<body>
-     <div id = "videoContainer"> 
-        <video id = "remoteVideo" playsinline autoplay></video>
-        <video id = "localVideo" autoplay muted></video>
-        <video id = "recordVideo" playsinline></video>
-        <div>
-            <button type="button" id = "record">Start Recording</button>
-            <button type="button" id = "play" disabled>Play</button>
-            <button type="button" id = "download" disabled>Download</button>
+    <body>
+        <div id = "grid">
+            <!-- 1st grid-->
+            <div id ="camera">
+                <video id = "remoteVideo" playsinline autoplay></video>
+                <video id = "localVideo" autoplay muted></video>
+            </div>            
+
+            <!-- 2nd grid-->
+            <div id="map">
+            </div>
+            
+            <!-- 3rd grid-->
+            <div id="gps_info">
+                <p>Local GPS :</p>
+                <label for ="lat"> Lat : </label>
+                <input type = "text" id="lat" name="lat">
+                <label for ="long"> Long : </label>
+                <input type = "text" id="long" name="long">
+                <br>
+                
+                <p>Remote GPS :</p>
+                <label for ="remote_lat"> Lat : </label>
+                <input type = "text" id="remote_lat" name="lat">
+                <label for ="remote_long"> Long : </label>
+                <input type = "text" id="remote_long" name="long"> 
+            </div>
+            
+            <!-- 4th grid-->
+            <div id="stat_info">
+                <p>Status : </p>
+                <input id ="status" type = "text" size = "30">
+            </div>
+            
+            <!-- 5th grid-->
+            <div id="zoom">
+                <input class = "btn" type="button" value="Zoom In" size="10" onclick="">
+                <input class = "btn" type="button" value="Zoom Out" onclick="">
+                <p content-align="center"> read QR code</p>
+                <img id="qrCode" src='' />
+            </div>
         </div>
-     </div>
         
-     <div id = "mapContainer">
-        <div id = "map"></div>
-        <p style="display:inline">Local GPS　→</p>
-        <label for ="lat"> Lat : </label>
-        <input type = "text" id="lat" name="lat">
-        <label for ="long"> Long : </label>
-        <input type = "text" id="long" name="long">
-        <br>
-        <p style="display:inline">Remote GPS→</p>
-        <label for ="remote_lat"> Lat : </label>
-        <input type = "text" id="remote_lat" name="lat">
-        <label for ="remote_long"> Long : </label>
-        <input type = "text" id="remote_long" name="long">
-        <br>
-        <mark style="background-color: pink">Access point :</mark>
-        <p id="url"></p>
-        <img id="qrCode" src='' />
-    </div>
-    
-    <!-- include adapter for srcObject shim -->
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="ga.js"></script>
-    <script src="script.js" async></script>
-</body>
-         
+        <!-- include adapter for srcObject shim -->
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+        <script src="ga.js"></script>
+        <script src="script.js" async></script>
+    </body>
 </html>
