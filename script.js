@@ -22,6 +22,7 @@ const configuration = {
 let room;
 let pc;
 let dataChannel;
+var scope = 16;
 
 function onSuccess() {};
 function onError(error) {
@@ -36,6 +37,7 @@ drone.on('open', error => {
   room.on('open', error => {
     if (error) {
       onError(error);
+      document.getElementById("status").value = "cannot open the room";
     }
   });
     
@@ -45,6 +47,7 @@ drone.on('open', error => {
     console.log('MEMBERS', members);
       if(members.length >= 3){
           return alert('this room is full');
+          document.getElementById("status").value = "this room is full";
       }
     // If we are the second user to connect to the room we will be creating the offer
     const isOfferer = members.length === 2;
@@ -206,6 +209,7 @@ function setupDataChannel(){
         var gpsData = JSON.parse(event.data);
         var latit = gpsData.lat;
         var longi = gpsData.lng;
+        document.getElementById("status").value = "now sending remote GPS";
         console.log('remote peer latitude :',latit);
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
@@ -216,7 +220,7 @@ function setupDataChannel(){
             console.log("remoteLocation :", remoteLocation);
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
-                zoom : 14
+                zoom : scope
             });
             
             var image = "CDV.png" 
@@ -236,4 +240,16 @@ function checkDataChannelState(){
     if(dataChannel.readyState === 'open'){
        console.log('WebRTC is open now');
     }
+}
+
+function zoomIn{
+    scope = scope +1;
+    var stat = "Map level is now" + scope;
+    document.getElementById("status").value = stat; 
+}
+
+function zoomOut{
+    scope = scope -1;
+    var stat = "Map level is now" + scope;
+    document.getElementById("status").value = stat; 
 }
