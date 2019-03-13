@@ -10,8 +10,8 @@ p{
     display : grid;
     height : 100vh;
     width : 100wh;
-    grid-template-columns: 30% 45% 25%;
-    grid-template-rows: 64% 36%;
+    grid-template-columns: 35% 35% 30%;
+    grid-template-rows: 70% 30%;
     border : 1px solid black;
 }
 #camera{
@@ -29,8 +29,8 @@ p{
 #localVideo{
     position : fixed;
     margin : 0;
-    top : 2px;
-    left : 2px;
+    top : 5px;
+    left : 5px;
     max-height : 50px;
     width : auto;
     border-radius : 2px;
@@ -50,10 +50,17 @@ p{
     grid-row : 2/3;
     grid-column: 2/3;
 }
+#status{
+    width : 80%;
+}
 #zoom{
     border : 1px solid black;
     grid-row : 2/3;
     grid-column: 3/4;
+}
+#qrCode{
+    width : 150px;
+    height : auto;
 }
 .btn{
     width : 100px;
