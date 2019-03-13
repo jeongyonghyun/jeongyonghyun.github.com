@@ -28,7 +28,7 @@ function onSuccess() {};
 function onError(error) {
     console.error(error);
     document.getElementById("status").value = "cannot open the room";
-    document.getElementById("connect").value = "Remote side is disconnected";
+    document.getElementById("connect").value = "Remote side is not connected";
     document.getElementById("connect").style.backgroundColor = "red";
     document.getElementById("connect").style.color = "white";
 };
@@ -223,6 +223,7 @@ function setupDataChannel(){
             console.log("remoteLocation :", remoteLocation);
             document.getElementById("connect").value = "Remote side is now connected";
             document.getElementById("connect").style.backgroundColor = "lightgreen";
+            document.getElementById("connect").style.color = "white";
             
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
@@ -231,7 +232,9 @@ function setupDataChannel(){
             
             var image = {
                 url : "CDV.png",
-                size : new google.maps.Size(120,120)
+                size : new google.maps.Size(40,40),
+                origin : new google.maps.Point(0,0),
+                anchor : new google.maps.Point(20,40)
             }
             var marker = new google.maps.Marker({
                 title : 'CUbE is here',

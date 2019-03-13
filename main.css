@@ -51,6 +51,8 @@ p{
     grid-column: 2/3;
 }
 #connect{
+    background-color: red;
+    color : white;
     width : 80%;
 }
 #status{
