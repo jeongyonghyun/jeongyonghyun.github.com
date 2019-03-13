@@ -251,7 +251,7 @@ function checkDataChannelState(){
     console.log('WenbRTC channel state is : ',dataChannel.readyState);
     if(dataChannel.readyState === 'open'){
         console.log('WebRTC is open now');
-    }else{
+    }else if(dataChannel.readyState === 'closed'){
         document.getElementById("connect").value = "Remote side is disconnected";
         document.getElementById("connect").style.backgroundColor = "red";
         document.getElementById("connect").style.color = "white";
