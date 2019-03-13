@@ -9,14 +9,14 @@
         <link rel="stylesheet" href="main.css">
         <title> WEB HMI </title>
         <script>
-            function zoomIn{
+            function zoomIn(){
                 scope = scope +1;
-                var stat = "Map level is now" + scope;
+                var stat = "Map level is now : " + scope;
                 document.getElementById("status").value = stat; 
             }
-            function zoomOut{
+            function zoomOut(){
                 scope = scope -1;
-                var stat = "Map level is now" + scope;
+                var stat = "Map level is now : " + scope;
                 document.getElementById("status").value = stat; 
             }
         </script>
@@ -52,13 +52,15 @@
             
             <!-- 4th grid-->
             <div id="stat_info">
+                <p>Connection State : </p>
+                <input id="connect" type="text" value="Remote side is not connected yet">
                 <p>Status : </p>
-                <input id ="status" type = "text" size = "30">
+                <input id ="status" type = "text">
             </div>
             
             <!-- 5th grid-->
             <div id="zoom">
-                <input class = "btn" type="button" value="Zoom In" size="10" onclick="zoomIn()">
+                <input class = "btn" type="button" value="Zoom In"  onclick="zoomIn()">
                 <input class = "btn" type="button" value="Zoom Out" onclick="zoomOut()">
                 <br>
                 <img id="qrCode" src='' />

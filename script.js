@@ -218,6 +218,9 @@ function setupDataChannel(){
             let map;
             remoteLocation = {lat : latit, lng : longi};
             console.log("remoteLocation :", remoteLocation);
+            document.getElementById("connect").value = "Remote Connection is on";
+            document.getElementById("connect").style.background = "lightgreen";
+            //changeRange();
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
                 zoom : scope
@@ -243,6 +246,7 @@ function checkDataChannelState(){
 }
 
 function changeRange(){
+    
     var status = document.getElementById("status").value;
     scope = status.replace(/[^0-9]/g,"");
 }
