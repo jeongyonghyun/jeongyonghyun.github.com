@@ -218,15 +218,18 @@ function setupDataChannel(){
             let map;
             remoteLocation = {lat : latit, lng : longi};
             console.log("remoteLocation :", remoteLocation);
-            document.getElementById("connect").value = "Remote Connection is on";
-            document.getElementById("connect").style.background = "lightgreen";
-            //changeRange();
+            document.getElementById("connect").value = "Remote side is now connected";
+            document.getElementById("connect").style.backgroundColor = "lightgreen";
+            
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
                 zoom : scope
             });
             
-            var image = "CDV.png" 
+            var image = {
+                url : "CDV.png",
+                size : new google.maps.Size(32,20)
+            }
             var marker = new google.maps.Marker({
                 title : 'CUbE is here',
                 icon : image,
@@ -245,8 +248,3 @@ function checkDataChannelState(){
     }
 }
 
-function changeRange(){
-    
-    var status = document.getElementById("status").value;
-    scope = status.replace(/[^0-9]/g,"");
-}
