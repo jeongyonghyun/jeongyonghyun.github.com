@@ -216,10 +216,13 @@ function setupDataChannel(){
             console.log("remoteLocation :", remoteLocation);
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
-                zoom : 16
+                zoom : scope
             });
             
+            var image = "CDV.png" 
             var marker = new google.maps.Marker({
+                title : 'CUbE is here',
+                icon : image,
                 position : remoteLocation,
                 animation : google.maps.Animation.BOUNCE
             });

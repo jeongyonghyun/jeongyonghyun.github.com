@@ -10,8 +10,8 @@ p{
     display : grid;
     height : 100vh;
     width : 100wh;
-    grid-template-columns: 35% 35% 30%;
-    grid-template-rows: 70% 30%;
+    grid-template-columns: 35% 30% 35%;
+    grid-template-rows: 75% 25%;
     border : 1px solid black;
 }
 #camera{
@@ -59,7 +59,7 @@ p{
     grid-column: 3/4;
 }
 #qrCode{
-    width : 150px;
+    width : 120px;
     height : auto;
 }
 .btn{
