@@ -27,7 +27,10 @@ var scope = 16;
 function onSuccess() {};
 function onError(error) {
     console.error(error);
-     document.getElementById("status").value = "cannot open the room";
+    document.getElementById("status").value = "cannot open the room";
+    document.getElementById("connect").value = "Remote side is disconnected";
+    document.getElementById("connect").style.backgroundColor = "red";
+    document.getElementById("connect").style.color = "white";
 };
 
 drone.on('open', error => {
