@@ -216,7 +216,7 @@ function setupDataChannel(){
             console.log("remoteLocation :", remoteLocation);
             map = new google.maps.Map(gps,{
                 center : remoteLocation,
-                zoom : scope
+                zoom : 14
             });
             
             var image = "CDV.png" 
