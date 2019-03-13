@@ -27,6 +27,7 @@ var scope = 16;
 function onSuccess() {};
 function onError(error) {
     console.error(error);
+     document.getElementById("status").value = "cannot open the room";
 };
 
 drone.on('open', error => {
@@ -37,7 +38,6 @@ drone.on('open', error => {
   room.on('open', error => {
     if (error) {
       onError(error);
-      document.getElementById("status").value = "cannot open the room";
     }
   });
     
@@ -214,7 +214,7 @@ function setupDataChannel(){
         console.log('remote peer longitude :',longi);
         document.getElementById("remote_lat").value = latit;
         document.getElementById("remote_long").value = longi;
-           const gps = document.querySelector('#map');
+            const gps = document.querySelector('#map');
             let map;
             remoteLocation = {lat : latit, lng : longi};
             console.log("remoteLocation :", remoteLocation);
@@ -242,14 +242,7 @@ function checkDataChannelState(){
     }
 }
 
-function zoomIn{
-    scope = scope +1;
-    var stat = "Map level is now" + scope;
-    document.getElementById("status").value = stat; 
-}
-
-function zoomOut{
-    scope = scope -1;
-    var stat = "Map level is now" + scope;
-    document.getElementById("status").value = stat; 
+function changeRange(){
+    var status = document.getElementById("status").value;
+    scope = status.replace(/[^0-9]/g,"");
 }
