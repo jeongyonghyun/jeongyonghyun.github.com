@@ -228,7 +228,7 @@ function setupDataChannel(){
             
             var image = {
                 url : "CDV.png",
-                size : new google.maps.Size(32,20)
+                size : new google.maps.Size(120,120)
             }
             var marker = new google.maps.Marker({
                 title : 'CUbE is here',
@@ -244,7 +244,11 @@ function setupDataChannel(){
 function checkDataChannelState(){
     console.log('WenbRTC channel state is : ',dataChannel.readyState);
     if(dataChannel.readyState === 'open'){
-       console.log('WebRTC is open now');
+        console.log('WebRTC is open now');
+    }else{
+        document.getElementById("connect").value = "Remote side is disconnected";
+        document.getElementById("connect").style.backgroundColor = "red";
+        document.getElementById("connect").style.color = "white";
     }
 }
 
