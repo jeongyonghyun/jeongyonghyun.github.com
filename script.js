@@ -136,9 +136,13 @@ function startWebRTC(isOfferer) {
      const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
         remoteVideo.srcObject = stream;
-        console.log("width : ", stream.width);
-        console.log("width : ", stream.height);
-        var size = {wid : stream.width, hei : stream.height};
+        var width = stream.getVideoTracks()[0].getSettings().width;
+        var height = stream.getVideoTracks()[0].getSettings().height;
+        var frameRate = stream.getVideoTracks()[0].getSettings().framRate;
+        console.log("width : ", width);
+        console.log("height : ", height);
+        console.log("frame rate : ", frameRate);
+        var size = {wid : width, hei : height, frame : framRate };
         dataChannel.send(JSON.stringify(size));
     }
   };
