@@ -137,8 +137,8 @@ function startWebRTC(isOfferer) {
      const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
         remoteVideo.srcObject = stream;
-        console("width : ", stream.width);
-        console("width : ", stream.height);
+        console.log("width : ", stream.width);
+        console.log("width : ", stream.height);
         var size = {wid : stream.width, hei : stream.height};
         dataChannel2.send(JSON.stringify(size));
     }
@@ -212,6 +212,7 @@ function setupDataChannel(){
     checkDataChannelState();
     dataChannel.onopen = checkDataChannelState;
     dataChannel.onclose = checkDataChannelState;
+    // gps data arrives from a remote user
     dataChannel.onmessage = (event) =>{
         console.log('got JSON data :',event.data);
         var gpsData = JSON.parse(event.data);
@@ -249,6 +250,14 @@ function setupDataChannel(){
             });
             
              marker.setMap(map);
+    }
+    
+    dataChannel2.onmessage = (event) =>{
+        console.log("got Video Size : ",event.data);
+        var videoData = JSON.parse(event.data);
+        var wid = videoSize.wid;
+        var hei = videoSize.hei;
+        console.log("video size : ", wid, hei);
     }
 }
 
