@@ -25,6 +25,7 @@ let dataChannel;
 var scope = 16;
 var cameraSrc = "environment";
 var enableAudio = false;
+    
 
 function onSuccess() {};
 function onError(error) {
@@ -100,7 +101,7 @@ function startWebRTC(isOfferer) {
     let lat, long;
     let centerLocation;
     let remoteLocation;
-    
+
     if(navigator.geolocation){
             console.log("geolocation is available");
             var options = {
@@ -158,7 +159,8 @@ function startWebRTC(isOfferer) {
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
-
+    console.log("Audio : ",enableAudio);
+    console.log("Video : ",cameraSrc);
 'use strict';
 
 /* globals MediaRecorder */
