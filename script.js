@@ -136,7 +136,7 @@ function startWebRTC(isOfferer) {
      const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
         remoteVideo.srcObject = stream;
-        var video = $("remoteVideo")[0];
+        var video = $("#remoteVideo")[0];
         
         video.onloadedmetadata = function(){
             console.log("width is ",this.videoWidth);
