@@ -136,12 +136,12 @@ function startWebRTC(isOfferer) {
      const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
         remoteVideo.srcObject = stream;
-        var width = stream.videoWidth;
-        var height = stream.videoHeight;
-        console.log("width : ", width);
-        console.log("height : ", height);
-        var size = {wid : width, hei : height};
-        dataChannel.send(JSON.stringify(size));
+        var video = $("remoteVideo")[0];
+        
+        video.onloadedmetadata = function(){
+            console.log("width is ",this.videoWidth);
+            console.log("height is ",this.videoHeight);
+        }
     }
   };
     
