@@ -68,10 +68,20 @@ p{
     height : auto;
 }
 .btn{
-    width : 150px;
+    width : 100px;
     height : 50px;
     color : red;
-    font-size : 18px;
+    font-size : 15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn2{
+    width : 100px;
+    height : 50px;
+    background-color : antiquewhite;
+    color : black;
+    font-size : 15px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;

@@ -19,6 +19,12 @@
                 var stat = "Map level is now : " + scope;
                 document.getElementById("status").value = stat; 
             }
+            function frontCam(){
+                cameraSrc = "user";
+            }
+            function rearCam(){
+                cameraSrc = "environment";
+            }
         </script>
     </head>
     
@@ -60,8 +66,11 @@
             
             <!-- 5th grid-->
             <div id="zoom">
-                <input class = "btn" type="button" value="Zoom In"  onclick="zoomIn()">
-                <input class = "btn" type="button" value="Zoom Out" onclick="zoomOut()">
+                <input class = "btn" type="button" value="Zoom In (+)"  onclick="zoomIn()">
+                <input class = "btn" type="button" value="Zoom Out (-)" onclick="zoomOut()">
+                &emsp;
+                <input class = "btn2" type="button" value="Front CAM" onclick="frontCam()">
+                <input class = "btn2" type="button" value="Rear CAM" onclick="rearCam()">
                 <br>
                 <img id="qrCode" src='' />
             </div>

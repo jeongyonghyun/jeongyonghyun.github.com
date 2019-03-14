@@ -23,6 +23,7 @@ let room;
 let pc;
 let dataChannel;
 var scope = 16;
+var cameraSrc = "environment";
 
 function onSuccess() {};
 function onError(error) {
@@ -141,13 +142,17 @@ function startWebRTC(isOfferer) {
         video.onloadedmetadata = function(){
             console.log("width is ",this.videoWidth);
             console.log("height is ",this.videoHeight);
+            videoWidth = this.videoWidth;
+            videoHeight = this.videoHeight;
+            videoSize = {wid:videoWidth, hei:videoHeight};
+             dataChannel.send(JSON.stringify(videoSize)); 
         }
     }
   };
-    
+     
   navigator.mediaDevices.getUserMedia({
     audio: false,
-    video: {facingMode : "environment"},
+    video: {facingMode : cameraSrc},
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
@@ -216,11 +221,11 @@ function setupDataChannel(){
     // gps data arrives from a remote user
     dataChannel.onmessage = (event) =>{
         console.log('got JSON data :',event.data);
-        var gpsData = JSON.parse(event.data);
-        var latit = gpsData.lat;
-        var longi = gpsData.lng;
-        var width = gpsData.wid;
-        var height = gpsData.hei;
+        var getData = JSON.parse(event.data);
+        var latit = getData.lat;
+        var longi = getData.lng;
+        var width = getData.wid;
+        var height = getData.hei;
         console.log(wid,hei);
         
         document.getElementById("status").value = "now sending remote GPS";
