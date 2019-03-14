@@ -83,7 +83,6 @@ function startWebRTC(isOfferer) {
       pc.createOffer().then(localDescCreated).catch(onError);
     }
       dataChannel = pc.createDataChannel('gps');
-      dataChannel2 = pc.createDataChannel('video');
       setupDataChannel();
     // console.log("dataChannel :", dataChannel)
   }else{
@@ -140,7 +139,7 @@ function startWebRTC(isOfferer) {
         console.log("width : ", stream.width);
         console.log("width : ", stream.height);
         var size = {wid : stream.width, hei : stream.height};
-        dataChannel2.send(JSON.stringify(size));
+        dataChannel.send(JSON.stringify(size));
     }
   };
     
@@ -218,6 +217,10 @@ function setupDataChannel(){
         var gpsData = JSON.parse(event.data);
         var latit = gpsData.lat;
         var longi = gpsData.lng;
+        var width = gpsData.wid;
+        var height = gpsData.hei;
+        console.log(wid,hei);
+        
         document.getElementById("status").value = "now sending remote GPS";
         console.log('remote peer latitude :',latit);
         console.log('remote peer longitude :',longi);
@@ -250,14 +253,6 @@ function setupDataChannel(){
             });
             
              marker.setMap(map);
-    }
-    
-    dataChannel2.onmessage = (event) =>{
-        console.log("got Video Size : ",event.data);
-        var videoData = JSON.parse(event.data);
-        var wid = videoSize.wid;
-        var hei = videoSize.hei;
-        console.log("video size : ", wid, hei);
     }
 }
 
