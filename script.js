@@ -25,7 +25,10 @@ let pc;
 let dataChannel;
 var scope = 16;
 var rearCam = true;
-var setting;
+var setting = {
+        audio: false,
+        video: {facingMode : "environment"}
+    }
 
 function onSuccess() {};
 function onError(error) {
