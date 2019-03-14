@@ -3,6 +3,8 @@
     padding : 1px;
 }
 p{
+    margin : 2px;
+    padding : 0;
     font-size : 20px;
     font-family :monospace;
 }
@@ -56,6 +58,9 @@ p{
     width : 80%;
 }
 #status{
+    width : 80%;
+}
+#resolution{
     width : 80%;
 }
 #zoom{

@@ -21,9 +21,12 @@
             }
             function frontCam(){
                 cameraSrc = "user";
+                document.getElementById("status").value = cameraSrc; 
+                console.log("front camera is using");
             }
             function rearCam(){
                 cameraSrc = "environment";
+                document.getElementById("status").value = cameraSrc; 
             }
         </script>
     </head>
@@ -62,6 +65,8 @@
                 <input id="connect" type="text" value="Remote side is not connected yet">
                 <p>Status : </p>
                 <input id ="status" type = "text">
+                <p>Video Resolution : </p>
+                <input id ="resolution" type="text">
             </div>
             
             <!-- 5th grid-->

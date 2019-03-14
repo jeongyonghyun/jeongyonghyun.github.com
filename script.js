@@ -141,11 +141,9 @@ function startWebRTC(isOfferer) {
         
         video.onloadedmetadata = function(){
             console.log("width is ",this.videoWidth);
-            console.log("height is ",this.videoHeight);
-            videoWidth = this.videoWidth;
-            videoHeight = this.videoHeight;
-            videoSize = {wid:videoWidth, hei:videoHeight};
-             dataChannel.send(JSON.stringify(videoSize)); 
+            console.log("height is ",this.videoHeight); 
+            var videoSize = this.videoWidth + " * " + this.videoHeight;
+            document.getElementById("resolution").value = videoSize;
         }
     }
   };
@@ -224,9 +222,6 @@ function setupDataChannel(){
         var getData = JSON.parse(event.data);
         var latit = getData.lat;
         var longi = getData.lng;
-        var width = getData.wid;
-        var height = getData.hei;
-        console.log(wid,hei);
         
         document.getElementById("status").value = "now sending remote GPS";
         console.log('remote peer latitude :',latit);
