@@ -83,6 +83,7 @@ function startWebRTC(isOfferer) {
       pc.createOffer().then(localDescCreated).catch(onError);
     }
       dataChannel = pc.createDataChannel('gps');
+      dataChannel2 = pc.createDataChannel('video');
       setupDataChannel();
     // console.log("dataChannel :", dataChannel)
   }else{
@@ -135,7 +136,11 @@ function startWebRTC(isOfferer) {
   pc.ontrack = event => {
      const stream = event.streams[0];
     if (!remoteVideo.srcObject || remoteVideo.srcObject.id !== stream.id) {
-      remoteVideo.srcObject = stream;
+        remoteVideo.srcObject = stream;
+        console("width : ", stream.width);
+        console("width : ", stream.height);
+        var size = {wid : stream.width, hei : stream.height};
+        dataChannel2.send(JSON.stringify(size));
     }
   };
     
