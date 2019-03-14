@@ -20,6 +20,31 @@
                 var stat = "Map level is now : " + scope;
                 document.getElementById("status").value = stat; 
             }
+            
+            function changeCam(){
+                if(rearCam){
+                    setting = {
+                        audio: false,
+                        video: {facingMode : "user"},
+                    }
+                    rearCam = false;
+                    var msg = "Front camera will be activated";
+                    document.getElementById("status").value = msg;
+                    document.getElementById("cam").value = "FRONT CAMERA"
+                    document.getElementById("cam").style.fontSize = "12px";
+                }else{
+                    setting = {
+                        audio: false,
+                        video: {facingMode : "environment"},
+                    }
+                    rearCam = true;
+                    var msg = "Rear camera will be activated";
+                    document.getElementById("status").value = msg;
+                    document.getElementById("cam").value = "REAR CAMERA"
+                    document.getElementById("cam").style.fontSize = "12px";
+                    cameraSrc = "environment";
+                    }
+                }
         </script>
     </head>
     
@@ -64,7 +89,6 @@
             <!-- 5th grid-->
             <div id="zoom">
                 <input class = "btn2" id="cam" type="button" value="CAMERA" onclick="changeCam()">
-                <input class = "btn2" id="aud" type="button" value="AUDIO" onclick="changeAudio()">
                 &emsp;
                 <input class = "btn" type="button" value="Zoom In (+)"  onclick="zoomIn()" >
                 <input class = "btn" type="button" value="Zoom Out (-)" onclick="zoomOut()" >

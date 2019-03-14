@@ -24,8 +24,8 @@ let room;
 let pc;
 let dataChannel;
 var scope = 16;
-var cameraSrc = "environment";
-var enableAudio = false;
+var rearCam = true;
+var setting;
 
 function onSuccess() {};
 function onError(error) {
@@ -149,11 +149,8 @@ let remoteLocation;
         }
     }
   };
-     
-  navigator.mediaDevices.getUserMedia({
-    audio: enableAudio,
-    video: {facingMode : cameraSrc},
-  }).then(stream => {
+  
+  navigator.mediaDevices.getUserMedia(setting).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
     console.log("Audio : ",enableAudio);
@@ -269,37 +266,5 @@ function checkDataChannelState(){
         document.getElementById("connect").value = "Remote side is disconnected";
         document.getElementById("connect").style.backgroundColor = "red";
         document.getElementById("connect").style.color = "white";
-    }
-}
-
-function changeCam(){
-    if(cameraSrc == "environment"){
-        var msg = "Front camera will be activated";
-        document.getElementById("status").value = msg;
-        document.getElementById("cam").value = "FRONT CAMERA"
-        document.getElementById("cam").style.fontSize = "12px";
-        cameraSrc = "user";
-    }else{
-        var msg = "Rear camera will be activated";
-        document.getElementById("status").value = msg;
-        document.getElementById("cam").value = "REAR CAMERA"
-        document.getElementById("cam").style.fontSize = "12px";
-        cameraSrc = "environment";
-        }
-    }
-
-function changeAudio(){
-    if(enableAudio == true){
-        enableAudio = false;
-        var msg = "Audio will be activated";
-        document.getElementById("status").value = msg;
-        document.getElementById("aud").value = "Audio Activate"
-        document.getElementById("aud").style.fontSize = "12px";
-    }else{
-        enableAudio = true;
-        var msg = "Audio will be deactivated";
-        document.getElementById("status").value = msg;
-        document.getElementById("aud").value = "Audio Deactivate"
-        document.getElementById("aud").style.fontSize = "12px";
     }
 }
