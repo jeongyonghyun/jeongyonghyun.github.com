@@ -19,13 +19,11 @@ const configuration = {
     urls: 'stun:stun.l.google.com:19302'
   }]
 };
+
 let room;
 let pc;
 let dataChannel;
 var scope = 16;
-var cameraSrc = "environment";
-var enableAudio = false;
-    
 
 function onSuccess() {};
 function onError(error) {
@@ -98,9 +96,11 @@ function startWebRTC(isOfferer) {
  startListeningToSignals();
 
  // find location
-    let lat, long;
-    let centerLocation;
-    let remoteLocation;
+let lat, long;
+let centerLocation;
+let remoteLocation;
+var cameraSrc = "environment";
+var enableAudio = false;
 
     if(navigator.geolocation){
             console.log("geolocation is available");
@@ -156,11 +156,12 @@ function startWebRTC(isOfferer) {
   }).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
+    console.log("Audio : ",enableAudio);
+    console.log("Video : ",cameraSrc);
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
-    console.log("Audio : ",enableAudio);
-    console.log("Video : ",cameraSrc);
+    
 'use strict';
 
 /* globals MediaRecorder */
@@ -168,7 +169,6 @@ function startWebRTC(isOfferer) {
     const mediaSource = new MediaSource();
     mediaSource.addEventListener('sourceopen', handleSourceOpen, false);
     const locVideo = document.querySelector('video#localVideo');
-    const recordedVideo = document.querySelector('video#recordVideo');
 
     var stream = locVideo.captureStream();
     console.log("start stream capture from local video : ", stream);
