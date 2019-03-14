@@ -24,6 +24,7 @@ let pc;
 let dataChannel;
 var scope = 16;
 var cameraSrc = "environment";
+var enableAudio = false;
 
 function onSuccess() {};
 function onError(error) {
@@ -149,7 +150,7 @@ function startWebRTC(isOfferer) {
   };
      
   navigator.mediaDevices.getUserMedia({
-    audio: false,
+    audio: enableAudio,
     video: {facingMode : cameraSrc},
   }).then(stream => {
     // Display your local video in #localVideo element

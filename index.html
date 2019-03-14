@@ -14,19 +14,39 @@
                 var stat = "Map level is now : " + scope;
                 document.getElementById("status").value = stat; 
             }
+            
             function zoomOut(){
                 scope = scope -1;
                 var stat = "Map level is now : " + scope;
                 document.getElementById("status").value = stat; 
             }
-            function frontCam(){
-                cameraSrc = "user";
-                document.getElementById("status").value = cameraSrc; 
-                console.log("front camera is using");
+            
+            function changeCam(){
+                if(cameraSrc === "environment"){
+                    var msg = "front camera will be activated";
+                    document.getElementById("status").value = msg;
+                    document.getElementById("cam").value = "FRONT CAMERA"
+                    document.getElementById("cam").style.fontSize = "12px";
+                    cameraSrc = "user";
+                }else{
+                    var msg = "rear camera will be activated";
+                    document.getElementById("status").value = msg;
+                    document.getElementById("cam").value = "REAR CAMERA"
+                    document.getElementById("cam").style.fontSize = "12px";
+                    cameraSrc = "environment";
+                }
             }
-            function rearCam(){
-                cameraSrc = "environment";
-                document.getElementById("status").value = cameraSrc; 
+            
+            function changeAudio(){
+                if(enableAudio === true){
+                    enableAudio = false;
+                    document.getElementById("aud").value = "Audio Activate"
+                    document.getElementById("aud").style.fontSize = "12px";
+                }else{
+                    enableAudio = true;
+                    document.getElementById("aud").value = "Audio Deactivate"
+                    document.getElementById("aud").style.fontSize = "12px";
+                }
             }
         </script>
     </head>
@@ -71,11 +91,11 @@
             
             <!-- 5th grid-->
             <div id="zoom">
-                <input class = "btn" type="button" value="Zoom In (+)"  onclick="zoomIn()">
-                <input class = "btn" type="button" value="Zoom Out (-)" onclick="zoomOut()">
+                <input class = "btn2" id="cam" type="button" value="CAMERA" onclick="changeCam()">
+                <input class = "btn2" id="aud" type="button" value="AUDIO" onclick="changeAudio()">
                 &emsp;
-                <input class = "btn2" type="button" value="Front CAM" onclick="frontCam()">
-                <input class = "btn2" type="button" value="Rear CAM" onclick="rearCam()">
+                <input class = "btn" type="button" value="Zoom In (+)"  onclick="zoomIn()" >
+                <input class = "btn" type="button" value="Zoom Out (-)" onclick="zoomOut()" >
                 <br>
                 <img id="qrCode" src='' />
             </div>
