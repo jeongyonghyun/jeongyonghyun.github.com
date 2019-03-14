@@ -22,7 +22,7 @@
             }
             
             function changeCam(){
-                if(cameraSrc === "environment"){
+                if(cameraSrc == "environment"){
                     var msg = "front camera will be activated";
                     document.getElementById("status").value = msg;
                     document.getElementById("cam").value = "FRONT CAMERA"
@@ -38,7 +38,7 @@
             }
             
             function changeAudio(){
-                if(enableAudio === true){
+                if(enableAudio == true){
                     enableAudio = false;
                     document.getElementById("aud").value = "Audio Activate"
                     document.getElementById("aud").style.fontSize = "12px";
