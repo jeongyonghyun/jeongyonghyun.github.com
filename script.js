@@ -272,3 +272,34 @@ function checkDataChannelState(){
     }
 }
 
+function changeCam(){
+    if(cameraSrc == "environment"){
+        var msg = "Front camera will be activated";
+        document.getElementById("status").value = msg;
+        document.getElementById("cam").value = "FRONT CAMERA"
+        document.getElementById("cam").style.fontSize = "12px";
+        cameraSrc = "user";
+    }else{
+        var msg = "Rear camera will be activated";
+        document.getElementById("status").value = msg;
+        document.getElementById("cam").value = "REAR CAMERA"
+        document.getElementById("cam").style.fontSize = "12px";
+        cameraSrc = "environment";
+        }
+    }
+
+function changeAudio(){
+    if(enableAudio == true){
+        enableAudio = false;
+        var msg = "Audio will be activated";
+        document.getElementById("status").value = msg;
+        document.getElementById("aud").value = "Audio Activate"
+        document.getElementById("aud").style.fontSize = "12px";
+    }else{
+        enableAudio = true;
+        var msg = "Audio will be deactivated";
+        document.getElementById("status").value = msg;
+        document.getElementById("aud").value = "Audio Deactivate"
+        document.getElementById("aud").style.fontSize = "12px";
+    }
+}
