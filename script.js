@@ -24,6 +24,8 @@ let room;
 let pc;
 let dataChannel;
 var scope = 16;
+var cameraSrc = "environment";
+var enableAudio = false;
 
 function onSuccess() {};
 function onError(error) {
@@ -99,8 +101,6 @@ function startWebRTC(isOfferer) {
 let lat, long;
 let centerLocation;
 let remoteLocation;
-var cameraSrc = "environment";
-var enableAudio = false;
 
     if(navigator.geolocation){
             console.log("geolocation is available");
