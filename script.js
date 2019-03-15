@@ -156,8 +156,6 @@ let remoteLocation;
   navigator.mediaDevices.getUserMedia(setting).then(stream => {
     // Display your local video in #localVideo element
     localVideo.srcObject = stream;
-    console.log("Audio : ",enableAudio);
-    console.log("Video : ",cameraSrc);
     // Add your stream to be sent to the conneting peer
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
   }, onError);
